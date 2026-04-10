@@ -1,0 +1,1115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>tail.trade Docs</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://api.fontshare.com/v2/css?f[]=general-sans@500,600,700&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --bg:#0d0d0f;
+  --bg2:#141416;
+  --bg3:#1a1a1e;
+  --surface:#222228;
+  --surface2:#2a2a30;
+  --border:#2a2a30;
+  --border-subtle:#1f1f24;
+  --fg:#f0f0f2;
+  --fg2:#b8b8be;
+  --fg3:#7a7a82;
+  --fg4:#4a4a52;
+  --accent:#BAFC50;
+  --accent-dim:rgba(186,252,80,.08);
+  --accent-fg:#0d0d0f;
+  --link:#BAFC50;
+  --link-hover:#d4ff8a;
+  --green:#4ade80;
+  --sans:'Inter',system-ui,-apple-system,sans-serif;
+  --heading:'General Sans','Inter',system-ui,-apple-system,sans-serif;
+  --mono:'JetBrains Mono',SFMono-Regular,Consolas,monospace;
+  --r:8px;
+  --r-lg:12px;
+  --sw:280px;
+  --header-h:56px;
+  --transition:150ms ease;
+}
+html{scroll-behavior:smooth}
+body{font-family:var(--sans);color:var(--fg2);line-height:1.7;font-size:15px;-webkit-font-smoothing:antialiased;background:var(--bg)}
+a{color:var(--link);text-decoration:none;transition:color var(--transition)}
+a:hover{color:var(--link-hover)}
+::selection{background:var(--accent);color:var(--accent-fg)}
+
+/* ─── Top Header ─── */
+.top-header{
+  position:fixed;top:0;left:0;right:0;z-index:100;
+  height:var(--header-h);
+  background:rgba(13,13,15,.85);
+  backdrop-filter:blur(16px) saturate(180%);
+  -webkit-backdrop-filter:blur(16px) saturate(180%);
+  border-bottom:1px solid var(--border-subtle);
+  display:flex;align-items:center;justify-content:space-between;
+  padding:0 24px;
+}
+.header-left{display:flex;align-items:center;gap:12px}
+.header-logo{display:flex;align-items:center;gap:10px;text-decoration:none}
+.header-logo svg{flex-shrink:0}
+.header-logo .logo-text{font-family:var(--heading);font-size:15px;font-weight:700;color:var(--fg);letter-spacing:-.3px}
+.header-logo .logo-badge{
+  font-size:10px;font-weight:600;letter-spacing:.6px;
+  padding:2px 7px;border-radius:4px;
+  background:var(--accent);color:var(--accent-fg);
+  text-transform:uppercase;
+}
+.header-nav{display:flex;align-items:center;gap:4px;margin-left:32px}
+.header-nav a{
+  font-size:13px;font-weight:500;color:var(--fg3);
+  padding:6px 12px;border-radius:6px;
+  transition:all var(--transition);
+}
+.header-nav a:hover{color:var(--fg);background:var(--surface);text-decoration:none}
+.header-nav a.active{color:var(--fg)}
+.header-right{display:flex;align-items:center;gap:12px}
+.search-trigger{
+  display:flex;align-items:center;gap:8px;
+  padding:7px 14px;border-radius:8px;
+  background:var(--bg3);border:1px solid var(--border);
+  color:var(--fg4);font-size:13px;cursor:pointer;
+  transition:all var(--transition);min-width:200px;
+}
+.search-trigger:hover{border-color:var(--fg4);color:var(--fg3)}
+.search-trigger .search-icon{opacity:.5}
+.search-trigger kbd{
+  font-family:var(--sans);font-size:11px;
+  padding:1px 5px;border-radius:4px;
+  background:var(--surface);border:1px solid var(--border);
+  color:var(--fg4);margin-left:auto;
+}
+
+/* ─── Search Modal ─── */
+.search-overlay{
+  position:fixed;inset:0;background:rgba(0,0,0,.6);z-index:200;
+  display:none;align-items:flex-start;justify-content:center;
+  padding-top:20vh;
+  backdrop-filter:blur(4px);
+}
+.search-overlay.open{display:flex}
+.search-modal{
+  width:560px;max-width:90vw;
+  background:var(--bg2);border:1px solid var(--border);
+  border-radius:var(--r-lg);overflow:hidden;
+  box-shadow:0 24px 64px rgba(0,0,0,.5);
+}
+.search-modal input{
+  width:100%;padding:16px 20px;
+  background:transparent;border:none;border-bottom:1px solid var(--border);
+  color:var(--fg);font-size:16px;font-family:var(--sans);
+  outline:none;
+}
+.search-modal input::placeholder{color:var(--fg4)}
+.search-results{max-height:320px;overflow-y:auto;padding:8px}
+.search-result{
+  display:flex;flex-direction:column;gap:2px;
+  padding:10px 14px;border-radius:6px;cursor:pointer;
+  transition:background var(--transition);
+}
+.search-result:hover{background:var(--surface)}
+.search-result .sr-title{font-size:14px;font-weight:500;color:var(--fg)}
+.search-result .sr-desc{font-size:12px;color:var(--fg4)}
+.search-empty{padding:24px;text-align:center;color:var(--fg4);font-size:14px}
+
+/* ─── Layout ─── */
+.layout{display:flex;min-height:100vh;padding-top:var(--header-h)}
+
+/* ─── Sidebar ─── */
+.sidebar{
+  width:var(--sw);position:fixed;top:var(--header-h);left:0;bottom:0;
+  overflow-y:auto;z-index:10;
+  display:flex;flex-direction:column;
+  padding:20px 0;
+  background:var(--bg);
+}
+.sidebar::-webkit-scrollbar{width:0}
+.sidebar-nav{padding:0 12px;flex:1}
+.sidebar-group{margin-bottom:4px}
+.sidebar-group-title{
+  font-size:11px;font-weight:600;text-transform:uppercase;
+  letter-spacing:.08em;color:var(--fg4);
+  padding:20px 12px 6px;user-select:none;
+}
+.s-link{
+  display:flex;align-items:center;padding:7px 12px;
+  border-radius:6px;font-size:14px;color:var(--fg3);
+  cursor:pointer;transition:all var(--transition);line-height:1.4;
+  border-left:2px solid transparent;
+  margin-left:0;
+}
+.s-link:hover{color:var(--fg);text-decoration:none}
+.s-link.active{
+  color:var(--accent);font-weight:500;
+  background:var(--accent-dim);
+  border-left-color:var(--accent);
+}
+.s-link.indent{padding-left:28px;font-size:13px}
+.sidebar-footer{
+  padding:16px 24px;flex-shrink:0;
+  border-top:1px solid var(--border-subtle);
+}
+.sidebar-footer a{font-size:12px;color:var(--fg4);display:flex;align-items:center;gap:4px}
+.sidebar-footer a:hover{color:var(--fg3)}
+
+/* ─── Content ─── */
+.content{margin-left:var(--sw);flex:1;min-width:0}
+.content-inner{max-width:760px;margin:0 auto;padding:48px 56px 120px}
+.page{display:none}.page.active{display:block}
+
+/* ─── Page Styles ─── */
+.page-header{margin-bottom:36px;padding-bottom:24px;border-bottom:1px solid var(--border-subtle)}
+.page h1{
+  font-family:var(--heading);
+  font-size:36px;font-weight:700;color:var(--fg);
+  line-height:1.25;margin-bottom:8px;letter-spacing:-.9px;
+}
+.page .page-desc{font-size:16px;color:var(--fg3);line-height:1.6}
+.page h2{
+  font-family:var(--heading);
+  font-size:22px;font-weight:600;color:var(--fg);
+  margin-top:48px;margin-bottom:14px;letter-spacing:-.3px;
+}
+.page h3{font-family:var(--heading);font-size:16px;font-weight:600;color:var(--fg);margin-top:32px;margin-bottom:10px}
+.page p{margin-bottom:16px;line-height:1.75}
+.page ul,.page ol{margin-bottom:16px;padding-left:24px}
+.page li{margin-bottom:6px;line-height:1.7}
+.page li::marker{color:var(--fg4)}
+.page strong{font-family:var(--heading);color:var(--fg);font-weight:600}
+.page em{color:var(--fg3)}
+
+.page blockquote{
+  border-left:3px solid var(--accent);
+  padding:14px 20px;margin:0 0 16px;
+  background:var(--accent-dim);
+  border-radius:0 var(--r) var(--r) 0;
+}
+.page blockquote p{margin:0;color:var(--fg2);font-style:italic}
+
+.page code{
+  font-family:var(--mono);font-size:12.5px;
+  background:var(--surface);padding:2px 6px;
+  border-radius:4px;color:#d8b4fe;
+}
+.page pre{
+  background:var(--bg);color:var(--fg2);
+  padding:18px 22px;border-radius:var(--r);
+  overflow-x:auto;margin-bottom:18px;
+  font-family:var(--mono);font-size:13px;line-height:1.65;
+  border:1px solid var(--border);
+}
+.page table{width:100%;border-collapse:collapse;margin-bottom:22px;font-size:14px;border:1px solid var(--border);border-radius:var(--r);overflow:hidden}
+.page thead{background:var(--surface)}
+.page th{text-align:left;padding:10px 14px;font-weight:600;font-size:12px;color:var(--fg3);text-transform:uppercase;letter-spacing:.05em}
+.page td{padding:10px 14px;border-top:1px solid var(--border);color:var(--fg2)}
+.page tbody tr:hover{background:rgba(255,255,255,.02)}
+
+/* ─── Callouts ─── */
+.callout{
+  display:flex;gap:12px;padding:16px 18px;
+  border-radius:var(--r);margin-bottom:18px;
+  font-size:14px;line-height:1.65;
+}
+.callout p{margin:0}
+.callout.info{background:rgba(99,102,241,.06);border:1px solid rgba(99,102,241,.15);color:#c7d2fe}
+.callout.tip{background:var(--accent-dim);border:1px solid rgba(186,252,80,.12);color:#d9f99d}
+.callout.warn{background:rgba(234,179,8,.06);border:1px solid rgba(234,179,8,.12);color:#fef08a}
+
+/* ─── Badges ─── */
+.badge{display:inline-block;font-size:10px;font-weight:600;letter-spacing:.5px;padding:3px 8px;border-radius:4px}
+.badge.live{background:rgba(74,222,128,.1);color:var(--green);border:1px solid rgba(74,222,128,.15)}
+.badge.soon{background:var(--surface);color:var(--fg4);border:1px solid var(--border)}
+
+/* ─── Stat Grid ─── */
+.stat-grid{
+  display:grid;grid-template-columns:repeat(4,1fr);gap:1px;
+  margin:20px 0;background:var(--border);
+  border:1px solid var(--border);border-radius:var(--r-lg);overflow:hidden;
+}
+.stat-card{background:var(--bg2);padding:20px;text-align:center}
+.stat-card .stat-val{
+  font-size:28px;font-weight:700;color:var(--fg);
+  font-family:var(--heading);letter-spacing:-.5px;
+}
+.stat-card .stat-label{
+  font-size:10px;text-transform:uppercase;letter-spacing:.8px;
+  color:var(--fg4);margin-top:6px;
+}
+
+/* ─── Market Rows ─── */
+.market-row{
+  display:flex;justify-content:space-between;align-items:center;
+  padding:12px 14px;border-bottom:1px solid var(--border-subtle);
+  transition:background var(--transition);
+}
+.market-row:last-child{border-bottom:none}
+.market-row:hover{background:rgba(255,255,255,.02)}
+.market-row .mr-name{font-weight:500;color:var(--fg);font-size:14px}
+.market-row .mr-meta{font-size:12px;color:var(--fg3);display:flex;align-items:center;gap:8px}
+
+/* ─── Formula ─── */
+.formula-block{
+  background:var(--bg);border:1px solid var(--border);
+  border-radius:var(--r);padding:22px;text-align:center;
+  font-family:var(--mono);font-size:15px;margin-bottom:8px;color:var(--fg2);
+}
+.formula-block .hl{color:var(--accent);font-weight:600}
+.formula-caption{text-align:center;font-size:12px;color:var(--fg4);margin-bottom:22px}
+
+/* ─── Page Nav ─── */
+.page-nav{display:flex;justify-content:space-between;margin-top:56px;gap:12px}
+.page-nav a{
+  font-size:12px;color:var(--fg3);display:flex;flex-direction:column;gap:2px;
+  padding:14px 18px;border:1px solid var(--border);border-radius:var(--r);
+  transition:all var(--transition);min-width:160px;background:var(--bg);
+}
+.page-nav a:hover{border-color:var(--accent);text-decoration:none;background:var(--accent-dim)}
+.page-nav a span{font-family:var(--heading);font-size:14px;font-weight:600;color:var(--fg)}
+.page-nav a:last-child{text-align:right;margin-left:auto}
+.page-nav .spacer{flex:1}
+
+/* ─── Mobile Toggle ─── */
+.menu-toggle{
+  display:none;position:fixed;top:14px;left:14px;z-index:110;
+  background:var(--surface);color:var(--fg);
+  border:1px solid var(--border);border-radius:var(--r);
+  padding:8px 12px;font-size:14px;cursor:pointer;font-family:var(--sans);
+}
+.overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.6);z-index:5}
+
+/* ─── Hero Card (Welcome page) ─── */
+.hero-card{
+  background:linear-gradient(135deg, rgba(186,252,80,.06) 0%, rgba(186,252,80,.02) 100%);
+  border:1px solid rgba(186,252,80,.1);
+  border-radius:var(--r-lg);
+  padding:32px;margin-bottom:28px;
+}
+.hero-card p{margin:0;font-size:16px;line-height:1.7;color:var(--fg2)}
+.hero-card .hero-tagline{
+  font-family:var(--heading);
+  font-size:20px;font-weight:600;color:var(--fg);margin-bottom:8px;
+  display:flex;align-items:center;gap:8px;
+}
+
+/* ─── Quick Link Cards ─── */
+.quick-links{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:16px 0 0}
+.quick-link{
+  display:flex;flex-direction:column;gap:4px;
+  padding:16px 18px;border-radius:var(--r);
+  background:var(--bg);border:1px solid var(--border);
+  cursor:pointer;transition:all var(--transition);
+}
+.quick-link:hover{border-color:var(--accent);background:var(--accent-dim);text-decoration:none}
+.quick-link .ql-title{font-family:var(--heading);font-size:14px;font-weight:600;color:var(--fg)}
+.quick-link .ql-desc{font-size:12px;color:var(--fg3);line-height:1.5}
+
+/* ─── Responsive ─── */
+@media(max-width:768px){
+  .menu-toggle{display:block}
+  .header-nav{display:none}
+  .search-trigger{min-width:auto}
+  .search-trigger span{display:none}
+  .sidebar{transform:translateX(-100%);transition:transform .2s ease;top:var(--header-h);background:var(--bg)}
+  .sidebar.open{transform:translateX(0)}
+  .sidebar.open~.overlay{display:block}
+  .content{margin-left:0}
+  .content-inner{padding:32px 20px 100px}
+  .stat-grid{grid-template-columns:repeat(2,1fr)}
+  .quick-links{grid-template-columns:1fr}
+}
+
+/* ─── Scrollbar ─── */
+::-webkit-scrollbar{width:6px}
+::-webkit-scrollbar-track{background:transparent}
+::-webkit-scrollbar-thumb{background:var(--surface2);border-radius:3px}
+::-webkit-scrollbar-thumb:hover{background:var(--fg4)}
+</style>
+</head>
+<body>
+
+<!-- ═══ TOP HEADER ═══ -->
+<header class="top-header">
+  <div class="header-left">
+    <a href="#" class="header-logo" data-page="welcome">
+      <svg fill="none" viewBox="0 0 24 24" width="20" height="20"><path d="M17.987 13c0 2.209 1.79 4 3.997 4h1.998v1h-1.998c-2.207 0-3.997 1.791-3.997 4v2h-.999v-2c0-2.209-1.79-4-3.997-4h-1.999v-1h1.999c2.207 0 3.997-1.791 3.997-4V3h.999v10z" fill="#BAFC50"/><path d="M6.995 2c0 2.209 1.79 4 3.997 4h1.999v1h-1.999c-2.207 0-3.997 1.791-3.997 4v10H5.996V11c0-2.209-1.79-4-3.997-4H0V6h1.999c2.207 0 3.997-1.791 3.997-4V0h.999v2z" fill="#BAFC50"/></svg>
+      <span class="logo-text">tail.trade</span>
+      <span class="logo-badge">docs</span>
+    </a>
+    <nav class="header-nav">
+      <a href="#" class="active" data-page="welcome">Documentation</a>
+      <a href="https://tail.trade/trade" target="_blank">App</a>
+      <a href="https://kops.ai" target="_blank">KOPS Oracle</a>
+    </nav>
+  </div>
+  <div class="header-right">
+    <button class="search-trigger" onclick="openSearch()">
+      <span class="search-icon">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
+      </span>
+      <span>Search docs...</span>
+      <kbd>&#8984;K</kbd>
+    </button>
+  </div>
+</header>
+
+<!-- ═══ SEARCH MODAL ═══ -->
+<div class="search-overlay" id="searchOverlay" onclick="closeSearch(event)">
+  <div class="search-modal" onclick="event.stopPropagation()">
+    <input type="text" id="searchInput" placeholder="Search documentation..." oninput="handleSearch(this.value)">
+    <div class="search-results" id="searchResults">
+      <div class="search-empty">Start typing to search...</div>
+    </div>
+  </div>
+</div>
+
+<button class="menu-toggle" onclick="toggleSidebar()">&#9776;</button>
+<div class="overlay" onclick="toggleSidebar()"></div>
+
+<div class="layout">
+
+<!-- ═══ SIDEBAR ═══ -->
+<nav class="sidebar">
+  <div class="sidebar-nav">
+    <div class="sidebar-group">
+      <a class="s-link active" data-page="welcome">Welcome</a>
+    </div>
+    <div class="sidebar-group">
+      <div class="sidebar-group-title">Overview</div>
+      <a class="s-link" data-page="why">Why tail.trade?</a>
+      <a class="s-link" data-page="markets">Markets</a>
+    </div>
+    <div class="sidebar-group">
+      <div class="sidebar-group-title">Getting Started</div>
+      <a class="s-link" data-page="connect">Connect Wallet</a>
+      <a class="s-link" data-page="funding">Funding Your Account</a>
+      <a class="s-link" data-page="trading">Start Trading</a>
+    </div>
+    <div class="sidebar-group">
+      <div class="sidebar-group-title">Trading</div>
+      <a class="s-link" data-page="orders">Order Types</a>
+      <a class="s-link" data-page="margining">Margining</a>
+      <a class="s-link" data-page="liquidations">Liquidations</a>
+      <a class="s-link" data-page="funding-rate">Funding Rate</a>
+      <a class="s-link" data-page="fees">Fees</a>
+    </div>
+    <div class="sidebar-group">
+      <div class="sidebar-group-title">Protocol</div>
+      <a class="s-link" data-page="architecture">Architecture</a>
+      <a class="s-link indent" data-page="architecture" data-scroll="amm">Virtual AMM</a>
+      <a class="s-link indent" data-page="architecture" data-scroll="dlob">Decentralized Orderbook</a>
+      <a class="s-link indent" data-page="architecture" data-scroll="matching">Matching Engine</a>
+      <a class="s-link" data-page="risk">Risk Engine</a>
+    </div>
+    <div class="sidebar-group">
+      <div class="sidebar-group-title">Oracle</div>
+      <a class="s-link" data-page="oracle">Price Oracle</a>
+      <a class="s-link" data-page="settlement">Settlement</a>
+    </div>
+    <div class="sidebar-group">
+      <div class="sidebar-group-title">Liquidity</div>
+      <a class="s-link" data-page="market-makers">Market Makers</a>
+    </div>
+    <div class="sidebar-group">
+      <div class="sidebar-group-title">Community</div>
+      <a class="s-link" data-page="links">Links</a>
+    </div>
+    <div class="sidebar-group">
+      <div class="sidebar-group-title">Resources</div>
+      <a class="s-link" data-page="faq">FAQs</a>
+    </div>
+  </div>
+  <div class="sidebar-footer">
+    <a href="https://tail.trade" target="_blank">tail.trade &#8599;</a>
+  </div>
+</nav>
+
+<!-- ═══ CONTENT ═══ -->
+<main class="content"><div class="content-inner">
+
+<!-- ═══ WELCOME ═══ -->
+<div class="page active" id="welcome">
+  <div class="page-header">
+    <h1>Welcome to tail.trade</h1>
+    <p class="page-desc">The first perpetual futures exchange for sports.</p>
+  </div>
+
+  <div class="hero-card">
+    <div class="hero-tagline">Bets expire. Positions don't.</div>
+    <p>tail.trade lets you go long or short on team strength indices with leverage. Positions have no expiry &#8212; hold through a match, a transfer window, or an entire season. Perpetuals are linear contracts margined and settled in <strong>USDC</strong>.</p>
+  </div>
+
+  <div class="stat-grid">
+    <div class="stat-card"><div class="stat-val">122</div><div class="stat-label">Markets</div></div>
+    <div class="stat-card"><div class="stat-val">5</div><div class="stat-label">Leagues</div></div>
+    <div class="stat-card"><div class="stat-val">10&times;</div><div class="stat-label">Max Leverage</div></div>
+    <div class="stat-card"><div class="stat-val">0</div><div class="stat-label">Withdrawal Delays</div></div>
+  </div>
+
+  <h2>Quick Links</h2>
+  <div class="quick-links">
+    <a class="quick-link" href="#" data-page="why">
+      <span class="ql-title">Why tail.trade?</span>
+      <span class="ql-desc">Understand the product and how it compares</span>
+    </a>
+    <a class="quick-link" href="#" data-page="connect">
+      <span class="ql-title">Connect Wallet</span>
+      <span class="ql-desc">Get started in under a minute</span>
+    </a>
+    <a class="quick-link" href="#" data-page="oracle">
+      <span class="ql-title">Price Oracle</span>
+      <span class="ql-desc">How team strength indices are computed</span>
+    </a>
+    <a class="quick-link" href="#" data-page="market-makers">
+      <span class="ql-title">Market Makers</span>
+      <span class="ql-desc">Information for liquidity providers</span>
+    </a>
+  </div>
+
+  <div class="page-nav">
+    <div class="spacer"></div>
+    <a href="#" data-page="why">Next<br><span>Why tail.trade? &rarr;</span></a>
+  </div>
+</div>
+
+<!-- ═══ WHY ═══ -->
+<div class="page" id="why">
+  <div class="page-header">
+    <h1>Why tail.trade?</h1>
+    <p class="page-desc">Perpetual exposure to the world's most popular sport.</p>
+  </div>
+
+  <h2>Perpetual Futures for Sports</h2>
+  <p>tail.trade is a <strong>perpetual futures exchange</strong> for team strength indices. You go long or short on a team with leverage, and your position stays open across matches, transfer windows, and entire seasons. Close it when you want &#8212; there's no expiry.</p>
+  <p>This is the same instrument structure that powers the largest crypto exchanges in the world &#8212; perpetual contracts with funding rates, cross-margin, and a decentralized limit order book &#8212; applied to a completely new asset class.</p>
+
+  <h2>A New Financial Primitive</h2>
+  <p>Until now, the only way to express a view on a football club was through one-off bets or event-specific prediction markets. Both expire when the event ends. Liquidity fragments across thousands of individual markets. There's no leverage, no short selling, no persistent price.</p>
+  <p>tail.trade changes this. One market per team. Persistent liquidity. Leverage up to 10&times;. Native short selling. Continuous price discovery powered by the KOPS oracle. Every match result, every transfer, every market signal feeds into a single continuous index.</p>
+
+  <h2>How It Compares</h2>
+  <table>
+    <thead><tr><th>Feature</th><th>Sportsbooks</th><th>Prediction Markets</th><th>tail.trade</th></tr></thead>
+    <tbody>
+    <tr><td><strong>Position duration</strong></td><td>Single event</td><td>Single event</td><td>Indefinite</td></tr>
+    <tr><td><strong>Leverage</strong></td><td>None</td><td>None/limited</td><td>Up to 10&times;</td></tr>
+    <tr><td><strong>Short selling</strong></td><td>Not possible</td><td>Awkward</td><td>Native</td></tr>
+    <tr><td><strong>Liquidity</strong></td><td>Per event</td><td>Per event</td><td>Persistent</td></tr>
+    <tr><td><strong>Withdrawal</strong></td><td>Days</td><td>At settlement</td><td>Instant</td></tr>
+    <tr><td><strong>KYC</strong></td><td>Required</td><td>Varies</td><td>None</td></tr>
+    <tr><td><strong>Custody</strong></td><td>Custodial</td><td>Varies</td><td>Self-custody</td></tr>
+    </tbody>
+  </table>
+
+  <h2>Built for Traders</h2>
+  <ul>
+    <li><strong>Self-custody</strong> &#8212; Assets never leave your wallet until settlement. No counterparty risk.</li>
+    <li><strong>Permissionless</strong> &#8212; No KYC, no region locking. Connect a wallet and trade.</li>
+    <li><strong>Instant settlement</strong> &#8212; Withdraw anytime. Zero delays, zero hold periods.</li>
+    <li><strong>Verifiable oracle</strong> &#8212; Every price move traces to a verifiable event. Win always up, loss always down &#8212; by construction.</li>
+  </ul>
+
+  <div class="page-nav">
+    <a href="#" data-page="welcome">&larr; Previous<br><span>Welcome</span></a>
+    <a href="#" data-page="markets">Next<br><span>Markets &rarr;</span></a>
+  </div>
+</div>
+
+<!-- ═══ MARKETS ═══ -->
+<div class="page" id="markets">
+  <div class="page-header">
+    <h1>Markets</h1>
+    <p class="page-desc">Perpetual futures on team strength indices.</p>
+  </div>
+
+  <p>Each market on tail.trade tracks a <strong>team strength index</strong> powered by the KOPS oracle. The index reflects a team's competitive strength based on match results, market consensus, and live event signals. When you have a position, you are speculating on whether a team's strength index will go up or down &#8212; you do not have any ownership stake in the club.</p>
+
+  <h2>Available Leagues</h2>
+  <div class="market-row"><span class="mr-name">Premier League</span><span class="mr-meta">20 teams <span class="badge live">Live</span></span></div>
+  <div class="market-row"><span class="mr-name">La Liga</span><span class="mr-meta">20 teams <span class="badge live">Live</span></span></div>
+  <div class="market-row"><span class="mr-name">Bundesliga</span><span class="mr-meta">18 teams <span class="badge live">Live</span></span></div>
+  <div class="market-row"><span class="mr-name">Serie A</span><span class="mr-meta">20 teams <span class="badge live">Live</span></span></div>
+  <div class="market-row"><span class="mr-name">Ligue 1</span><span class="mr-meta">18 teams <span class="badge live">Live</span></span></div>
+  <div class="market-row"><span class="mr-name">MLB</span><span class="mr-meta"><span class="badge soon">Coming Soon</span></span></div>
+  <div class="market-row"><span class="mr-name">NBA</span><span class="mr-meta"><span class="badge soon">Coming Soon</span></span></div>
+  <div class="market-row"><span class="mr-name">ATP / WTA Tennis</span><span class="mr-meta"><span class="badge soon">Coming Soon</span></span></div>
+
+  <h2>How Prices Work</h2>
+  <p>Each team's price is derived from an internal strength index via a smooth transformation that ensures prices are always positive and that equal changes in strength produce equal percentage price moves across all teams.</p>
+  <p>Prices move primarily at <strong>match settlement</strong> &#8212; when a verified result is incorporated into the index. Between matches, prices also reflect changes in market consensus from distributed signal sources. During live matches, sub-second market signals drive continuous price updates.</p>
+
+  <div class="callout tip">
+    <div>&#128161;</div>
+    <div><p><strong>Key guarantee:</strong> A team that wins will never see its index decrease. A team that loses will never see its index increase. This is enforced by construction on every settlement.</p></div>
+  </div>
+
+  <h2>Open Interest Caps</h2>
+  <p>Each market has a dedicated open interest cap. Once reached, new positions cannot be opened until open interest falls below the limit. Caps are subject to change and will be increased as liquidity grows.</p>
+
+  <div class="page-nav">
+    <a href="#" data-page="why">&larr; Previous<br><span>Why tail.trade?</span></a>
+    <a href="#" data-page="connect">Next<br><span>Connect Wallet &rarr;</span></a>
+  </div>
+</div>
+
+<!-- ═══ CONNECT ═══ -->
+<div class="page" id="connect">
+  <div class="page-header">
+    <h1>Connect Wallet</h1>
+    <p class="page-desc">Access tail.trade with any Solana-compatible wallet.</p>
+  </div>
+
+  <p>tail.trade is fully on-chain. To start trading, connect a Solana wallet.</p>
+
+  <h2>Supported Wallets</h2>
+  <ul>
+    <li>Phantom</li>
+    <li>Solflare</li>
+    <li>Backpack</li>
+    <li>Any wallet supporting Solana via WalletConnect</li>
+  </ul>
+
+  <h2>Getting Started</h2>
+  <ol>
+    <li>Navigate to <a href="https://tail.trade/trade" target="_blank">tail.trade/trade</a></li>
+    <li>Click <strong>Connect Wallet</strong> in the top right</li>
+    <li>Select your wallet and approve the connection</li>
+    <li>Fund your account with USDC (see next page)</li>
+  </ol>
+
+  <div class="page-nav">
+    <a href="#" data-page="markets">&larr; Previous<br><span>Markets</span></a>
+    <a href="#" data-page="funding">Next<br><span>Funding Your Account &rarr;</span></a>
+  </div>
+</div>
+
+<!-- ═══ FUNDING ═══ -->
+<div class="page" id="funding">
+  <div class="page-header">
+    <h1>Funding Your Account</h1>
+    <p class="page-desc">Deposit USDC to start trading.</p>
+  </div>
+
+  <p>tail.trade uses <strong>USDC</strong> as the sole collateral and settlement currency. You'll need USDC on Solana to trade.</p>
+
+  <h2>Depositing</h2>
+  <ol>
+    <li>Ensure you have USDC in your connected Solana wallet</li>
+    <li>Click <strong>Deposit</strong> on the trading interface</li>
+    <li>Enter the amount and confirm the transaction</li>
+    <li>Your balance will update within seconds</li>
+  </ol>
+
+  <h2>Withdrawing</h2>
+  <p>Withdrawals are instant and on-chain. Click <strong>Withdraw</strong>, enter the amount, and confirm. Funds return to your wallet immediately &#8212; no processing delays, no hold periods.</p>
+
+  <div class="page-nav">
+    <a href="#" data-page="connect">&larr; Previous<br><span>Connect Wallet</span></a>
+    <a href="#" data-page="trading">Next<br><span>Start Trading &rarr;</span></a>
+  </div>
+</div>
+
+<!-- ═══ START TRADING ═══ -->
+<div class="page" id="trading">
+  <div class="page-header">
+    <h1>Start Trading</h1>
+    <p class="page-desc">Open your first position.</p>
+  </div>
+
+  <ol>
+    <li><strong>Select a market</strong> &#8212; choose a team from the market selector</li>
+    <li><strong>Choose direction</strong> &#8212; Long (bullish on team strength) or Short (bearish)</li>
+    <li><strong>Set size and leverage</strong> &#8212; choose your position size and leverage up to 10&times;</li>
+    <li><strong>Confirm</strong> &#8212; review and submit your order</li>
+  </ol>
+
+  <p>Your position is now open. It will remain open indefinitely &#8212; through matches, transfer windows, and seasons &#8212; until you close it or get liquidated.</p>
+
+  <div class="callout warn">
+    <div>&#9888;&#65039;</div>
+    <div><p>Higher leverage = higher risk. Even small index movements can push highly leveraged positions into liquidation. Trade accordingly.</p></div>
+  </div>
+
+  <div class="page-nav">
+    <a href="#" data-page="funding">&larr; Previous<br><span>Funding</span></a>
+    <a href="#" data-page="orders">Next<br><span>Order Types &rarr;</span></a>
+  </div>
+</div>
+
+<!-- ═══ ORDERS ═══ -->
+<div class="page" id="orders">
+  <div class="page-header">
+    <h1>Order Types</h1>
+    <p class="page-desc">How to enter and exit positions.</p>
+  </div>
+
+  <h2>Market Orders</h2>
+  <p>Execute immediately against available liquidity at the best available price. Market orders guarantee execution but not price.</p>
+
+  <h2>Limit Orders</h2>
+  <p>Set a price at which you want your order to fill. The order will only execute when the market reaches your specified price. Limit orders guarantee price but not execution.</p>
+
+  <h2>Take-Profit / Stop-Loss</h2>
+  <p>Attach conditional orders to open positions. A take-profit closes your position when the price reaches a favorable target. A stop-loss closes when the price reaches an unfavorable threshold.</p>
+
+  <div class="page-nav">
+    <a href="#" data-page="trading">&larr; Previous<br><span>Start Trading</span></a>
+    <a href="#" data-page="margining">Next<br><span>Margining &rarr;</span></a>
+  </div>
+</div>
+
+<!-- ═══ MARGINING ═══ -->
+<div class="page" id="margining">
+  <div class="page-header">
+    <h1>Margining</h1>
+    <p class="page-desc">How collateral and leverage work.</p>
+  </div>
+
+  <p>tail.trade uses <strong>cross-margin</strong> by default. Your entire USDC balance acts as collateral for all open positions. This is more capital-efficient than isolated margin, but means losses on one position can affect your other positions.</p>
+
+  <h2>Leverage</h2>
+  <p>Maximum leverage is <strong>10&times;</strong> across all markets. Leverage is set per-position at the time of opening. Higher leverage means less margin is required to open a position, but also means a smaller adverse price move can trigger liquidation.</p>
+
+  <h2>Margin Ratio</h2>
+  <pre>margin_ratio = equity / total_position_value</pre>
+  <p>Where equity = deposited USDC + unrealized PnL &#8722; fees &#8722; funding payments.</p>
+
+  <div class="page-nav">
+    <a href="#" data-page="orders">&larr; Previous<br><span>Order Types</span></a>
+    <a href="#" data-page="liquidations">Next<br><span>Liquidations &rarr;</span></a>
+  </div>
+</div>
+
+<!-- ═══ LIQUIDATIONS ═══ -->
+<div class="page" id="liquidations">
+  <div class="page-header">
+    <h1>Liquidations</h1>
+    <p class="page-desc">What happens when margin runs out.</p>
+  </div>
+
+  <p>If your margin ratio falls below the <strong>maintenance margin requirement</strong>, your position becomes eligible for liquidation. A keeper network monitors positions and executes liquidations to protect the system from bad debt.</p>
+
+  <h2>Liquidation Process</h2>
+  <ol>
+    <li>Your margin ratio drops below the maintenance threshold</li>
+    <li>A keeper detects the eligible position</li>
+    <li>The position is closed against available liquidity</li>
+    <li>A liquidation fee is charged from remaining margin</li>
+    <li>Any remaining margin is returned to your account</li>
+  </ol>
+
+  <div class="callout warn">
+    <div>&#9888;&#65039;</div>
+    <div><p>Monitor your positions. Match settlements can cause significant index moves. Consider using stop-loss orders and lower leverage to manage risk around scheduled matches.</p></div>
+  </div>
+
+  <div class="page-nav">
+    <a href="#" data-page="margining">&larr; Previous<br><span>Margining</span></a>
+    <a href="#" data-page="funding-rate">Next<br><span>Funding Rate &rarr;</span></a>
+  </div>
+</div>
+
+<!-- ═══ FUNDING RATE ═══ -->
+<div class="page" id="funding-rate">
+  <div class="page-header">
+    <h1>Funding Rate</h1>
+    <p class="page-desc">How the perpetual price stays anchored to the oracle index.</p>
+  </div>
+
+  <p>Perpetual contracts have no expiry, so there is no natural convergence mechanism. The <strong>funding rate</strong> fills this role &#8212; it's a periodic payment between longs and shorts that incentivizes the mark price to track the oracle index.</p>
+
+  <h2>How It Works</h2>
+  <ul>
+    <li><strong>Mark price &gt; oracle index</strong> &rarr; Longs pay shorts</li>
+    <li><strong>Mark price &lt; oracle index</strong> &rarr; Shorts pay longs</li>
+  </ul>
+  <p>Funding is computed and settled continuously. The magnitude scales with the deviation between mark and oracle &#8212; larger deviations produce stronger incentives to correct.</p>
+
+  <h2>Practical Impact</h2>
+  <p>If you hold a position for an extended period, funding payments accumulate. During periods of sustained directional bias, funding can become a meaningful cost. Monitor the current funding rate on the trading interface before opening long-duration positions.</p>
+
+  <div class="page-nav">
+    <a href="#" data-page="liquidations">&larr; Previous<br><span>Liquidations</span></a>
+    <a href="#" data-page="fees">Next<br><span>Fees &rarr;</span></a>
+  </div>
+</div>
+
+<!-- ═══ FEES ═══ -->
+<div class="page" id="fees">
+  <div class="page-header">
+    <h1>Fees</h1>
+    <p class="page-desc">Trading costs on tail.trade.</p>
+  </div>
+
+  <table>
+    <thead><tr><th>Fee Type</th><th>Rate</th><th>Description</th></tr></thead>
+    <tbody>
+    <tr><td><strong>Taker Fee</strong></td><td>0.1%</td><td>Charged on market orders and limit orders that execute immediately</td></tr>
+    <tr><td><strong>Maker Fee</strong></td><td>0.02%</td><td>Charged on limit orders that add liquidity to the book</td></tr>
+    <tr><td><strong>Liquidation Fee</strong></td><td>1%</td><td>Charged from remaining margin upon liquidation</td></tr>
+    <tr><td><strong>Funding</strong></td><td>Variable</td><td>Continuous payment between longs and shorts</td></tr>
+    </tbody>
+  </table>
+
+  <p>Fees are subject to change. No deposit or withdrawal fees.</p>
+
+  <div class="page-nav">
+    <a href="#" data-page="funding-rate">&larr; Previous<br><span>Funding Rate</span></a>
+    <a href="#" data-page="architecture">Next<br><span>Architecture &rarr;</span></a>
+  </div>
+</div>
+
+<!-- ═══ ARCHITECTURE ═══ -->
+<div class="page" id="architecture">
+  <div class="page-header">
+    <h1>Architecture</h1>
+    <p class="page-desc">How the tail.trade protocol executes trades.</p>
+  </div>
+
+  <p>tail.trade is a fully on-chain perpetual futures protocol. Every order, cancellation, trade, and liquidation is executed and settled on-chain with single-block finality. The protocol combines three execution layers to provide deep liquidity from day one while scaling to support professional market making.</p>
+
+  <h2 id="amm">Virtual AMM</h2>
+  <p>Each market has a <strong>virtual automated market maker</strong> (vAMM) that provides baseline liquidity. The vAMM uses a constant-product curve with concentrated liquidity around the oracle price, ensuring trades can always execute even in markets with limited organic order flow.</p>
+  <p>The vAMM is "virtual" &#8212; there are no real assets in the pool. It functions purely as a pricing and execution mechanism. Trader PnL is zero-sum: profits realized by one side are exactly matched by losses on the other.</p>
+
+  <h3>Dynamic Peg</h3>
+  <p>The vAMM center price is continuously re-pegged to the oracle price. This ensures the vAMM always quotes around the current fair value rather than a stale historical price. Re-pegging happens atomically &#8212; there is no lag or arbitrageable gap between the oracle update and the vAMM adjustment.</p>
+
+  <h3>Configurable Depth</h3>
+  <p>Each market's vAMM depth is configured independently based on expected volatility and trading demand. Deeper pools absorb larger trades with less price impact. Pool depth can be adjusted by the protocol as markets mature.</p>
+
+  <h2 id="dlob">Decentralized Limit Order Book (DLOB)</h2>
+  <p>On top of the vAMM, tail.trade runs a <strong>decentralized limit order book</strong>. Market makers and keepers place resting limit orders that compete with the vAMM to fill incoming taker flow.</p>
+  <p>When a taker order arrives, the matching engine compares available execution prices across both the DLOB and the vAMM. The taker always receives the best available price &#8212; if a resting limit order offers a tighter spread than the vAMM, the limit order fills first.</p>
+
+  <h3>Keeper Network</h3>
+  <p>Limit orders are submitted on-chain and matched by a decentralized network of <strong>keepers</strong>. Keepers are off-chain bots that monitor the order book and trigger on-chain transactions to match orders when conditions are met. Any party can run a keeper &#8212; the network is permissionless and competitive.</p>
+
+  <h3>DLOB Health</h3>
+  <p>As markets mature, the share of volume filled by the DLOB relative to the vAMM is expected to grow. This ratio is a key health metric &#8212; higher DLOB fill percentage indicates more organic market making activity and tighter spreads for traders.</p>
+
+  <h2 id="matching">Matching Engine</h2>
+  <p>The matching engine determines execution priority across all liquidity sources. For each incoming taker order, the engine evaluates:</p>
+  <ol>
+    <li><strong>DLOB limit orders</strong> &#8212; Resting limit orders at or better than the taker's price are matched in price-time priority.</li>
+    <li><strong>vAMM</strong> &#8212; Any remaining unfilled quantity executes against the virtual AMM at the curve-determined price.</li>
+  </ol>
+  <p>This priority stack ensures takers always get the best available price while makers can compete to provide tighter liquidity.</p>
+
+  <h2>Settlement</h2>
+  <p>All positions are settled in <strong>USDC</strong>. There are no synthetic tokens, no rebasing, no token conversions. PnL is computed as the difference between entry and exit price multiplied by position size, paid directly in USDC.</p>
+
+  <div class="page-nav">
+    <a href="#" data-page="fees">&larr; Previous<br><span>Fees</span></a>
+    <a href="#" data-page="risk">Next<br><span>Risk Engine &rarr;</span></a>
+  </div>
+</div>
+
+<!-- ═══ RISK ENGINE ═══ -->
+<div class="page" id="risk">
+  <div class="page-header">
+    <h1>Risk Engine</h1>
+    <p class="page-desc">How the protocol manages risk and protects solvency.</p>
+  </div>
+
+  <p>The risk engine enforces margin requirements, triggers liquidations, and prevents the accumulation of bad debt. It operates continuously and autonomously &#8212; no manual intervention is required.</p>
+
+  <h2>Margin System</h2>
+  <p>All positions are collateralized with USDC. The protocol supports cross-margin (default) where your entire account balance backs all positions, and isolated margin for traders who want to cap risk per position.</p>
+  <table>
+    <thead><tr><th>Threshold</th><th>Description</th></tr></thead>
+    <tbody>
+    <tr><td><strong>Initial Margin</strong></td><td>Minimum collateral required to open a position. Determines maximum leverage.</td></tr>
+    <tr><td><strong>Maintenance Margin</strong></td><td>Minimum collateral to keep a position open. Falling below triggers liquidation.</td></tr>
+    </tbody>
+  </table>
+
+  <h2>Liquidation Engine</h2>
+  <p>When a position's margin ratio falls below the maintenance threshold, it becomes eligible for liquidation. The liquidation engine operates through a decentralized keeper network:</p>
+  <ol>
+    <li>Keepers continuously monitor all open positions</li>
+    <li>When a position breaches the maintenance margin, any keeper can submit a liquidation transaction</li>
+    <li>The position is partially or fully closed against available liquidity</li>
+    <li>The liquidating keeper receives a fee from the remaining margin</li>
+    <li>Any excess margin is returned to the position holder</li>
+  </ol>
+  <p>Partial liquidation is preferred when possible &#8212; the engine closes just enough of the position to restore the margin ratio above maintenance, preserving the remainder for the trader.</p>
+
+  <h2>Insurance Fund</h2>
+  <p>Each market maintains a dedicated insurance fund that absorbs bad debt from underwater liquidations. The fund is capitalized through a percentage of trading fees. If a liquidation results in a shortfall (position equity is negative at closure), the insurance fund covers the difference.</p>
+
+  <h2>Oracle Guard Rails</h2>
+  <ul>
+    <li><strong>Confidence interval checks</strong> &#8212; Oracle updates with wide confidence intervals trigger reduced leverage limits</li>
+    <li><strong>Staleness protection</strong> &#8212; If the oracle hasn't updated within a configured window, new position opens are paused</li>
+    <li><strong>Price band limits</strong> &#8212; Maximum per-update price movement is capped, preventing single-oracle manipulation from cascading into mass liquidations</li>
+    <li><strong>Settlement clamping</strong> &#8212; The KOPS oracle's cause-effect clamp prevents pathological settlement outcomes at the source</li>
+  </ul>
+
+  <div class="callout info">
+    <div>&#8505;&#65039;</div>
+    <div><p><strong>Multi-layer protection:</strong> Confidence-weighted market signals, capped settlement moves, and the hard cause-effect invariant work together. Bad data gets attenuated. Correct data gets amplified.</p></div>
+  </div>
+
+  <h2>Open Interest Caps</h2>
+  <p>Each market has a maximum open interest limit. When reached, new positions cannot be opened &#8212; only existing positions can be reduced or closed. This prevents the protocol from taking on more risk than the liquidity and insurance fund can support.</p>
+
+  <div class="page-nav">
+    <a href="#" data-page="architecture">&larr; Previous<br><span>Architecture</span></a>
+    <a href="#" data-page="oracle">Next<br><span>Price Oracle &rarr;</span></a>
+  </div>
+</div>
+
+<!-- ═══ ORACLE ═══ -->
+<div class="page" id="oracle">
+  <div class="page-header">
+    <h1>Price Oracle</h1>
+    <p class="page-desc">How team strength indices are computed.</p>
+  </div>
+
+  <p>tail.trade uses the <strong>KOPS oracle</strong> &#8212; a constructive oracle that synthesizes continuous team strength indices from multiple independent signal layers.</p>
+  <p>Unlike traditional oracles that relay an existing spot price, KOPS <em>constructs</em> the index from first principles. There is no underlying spot market for "team strength" &#8212; the oracle creates the canonical price.</p>
+
+  <h2>Signal Layers</h2>
+  <table>
+    <thead><tr><th>Layer</th><th>Signal Source</th><th>Active When</th></tr></thead>
+    <tbody>
+    <tr><td><strong>Historical Performance</strong></td><td>Cumulative match results via network equilibrium solve</td><td>Always</td></tr>
+    <tr><td><strong>Market Consensus</strong></td><td>Forward-looking assessments from distributed markets</td><td>Between matches</td></tr>
+    <tr><td><strong>Live Event</strong></td><td>Real-time market signals</td><td>During matches</td></tr>
+    </tbody>
+  </table>
+
+  <h2>Update Cadence</h2>
+  <table>
+    <thead><tr><th>Regime</th><th>Cadence</th></tr></thead>
+    <tbody>
+    <tr><td>Between matches</td><td>30 seconds</td></tr>
+    <tr><td>During live matches</td><td>1-2 seconds</td></tr>
+    <tr><td>At settlement</td><td>Immediate, deterministic</td></tr>
+    </tbody>
+  </table>
+
+  <h2>Cause-Effect Guarantee</h2>
+  <p>The KOPS oracle enforces a hard constraint on every settlement:</p>
+  <ul>
+    <li>A <strong>win</strong> will never decrease a team's index</li>
+    <li>A <strong>loss</strong> will never increase a team's index</li>
+  </ul>
+  <p>This is verifiable on every settlement event. See <a href="#" data-page="settlement">Settlement</a> for details.</p>
+
+  <p>For full oracle documentation, see <a href="https://kops.ai" target="_blank">KOPS Oracle Docs &#8599;</a></p>
+
+  <div class="page-nav">
+    <a href="#" data-page="risk">&larr; Previous<br><span>Risk Engine</span></a>
+    <a href="#" data-page="settlement">Next<br><span>Settlement &rarr;</span></a>
+  </div>
+</div>
+
+<!-- ═══ SETTLEMENT ═══ -->
+<div class="page" id="settlement">
+  <div class="page-header">
+    <h1>Settlement</h1>
+    <p class="page-desc">How match results affect the index.</p>
+  </div>
+
+  <p>When a match ends, the KOPS oracle performs a deterministic settlement. The index update is computed from the verified match result and published to the on-chain feed.</p>
+
+  <h2>Settlement Lifecycle</h2>
+  <ol>
+    <li><strong>Match starts</strong> &#8212; Live Event layer activates, market consensus layer freezes at kickoff values</li>
+    <li><strong>During match</strong> &#8212; Real-time market signals drive continuous index updates</li>
+    <li><strong>Match ends</strong> &#8212; Live Event layer deactivates, settlement function executes</li>
+    <li><strong>Settlement</strong> &#8212; Index update is computed deterministically from the result, cause-effect clamp is applied, new index value is published on-chain</li>
+  </ol>
+
+  <h2>What Determines the Size of the Move?</h2>
+  <p>The magnitude of the settlement move depends on how surprising the result was relative to pre-match market expectations. A heavy favorite winning produces a small move. A heavy underdog winning produces a large move. Draws are treated as partial outcomes for both sides.</p>
+
+  <h2>Verification</h2>
+  <p>All settlements are logged publicly. Every settlement record contains the pre-event index, post-event index, verified outcome, and whether the causal monotonicity clamp was applied. Anyone can independently verify that the settlement was computed correctly.</p>
+
+  <div class="page-nav">
+    <a href="#" data-page="oracle">&larr; Previous<br><span>Price Oracle</span></a>
+    <a href="#" data-page="market-makers">Next<br><span>Market Makers &rarr;</span></a>
+  </div>
+</div>
+
+<!-- ═══ MARKET MAKERS ═══ -->
+<div class="page" id="market-makers">
+  <div class="page-header">
+    <h1>Market Makers</h1>
+    <p class="page-desc">Information for professional liquidity providers.</p>
+  </div>
+
+  <p>Anyone is welcome to market make on tail.trade with their own strategies.</p>
+
+  <h2>Why Make Markets on tail.trade?</h2>
+  <ul>
+    <li><strong>New asset class</strong> &#8212; first-mover advantage in a market with no competing venues</li>
+    <li><strong>Predictable oracle</strong> &#8212; deterministic settlement with cause-effect guarantees reduces adverse selection risk</li>
+    <li><strong>Hedgeable</strong> &#8212; team strength indices are correlated with bookmaker odds, enabling cross-hedging</li>
+    <li><strong>Maker fee rebates</strong> &#8212; competitive fee structure for liquidity providers</li>
+  </ul>
+
+  <h2>Getting Started</h2>
+  <p>Market makers can access the full order book via the SDK and API. For dedicated support, higher rate limits, or co-location discussions, please reach out.</p>
+
+  <p>If you're interested in market making on tail.trade, email <strong>mm@tail.trade</strong> or reach out on <a href="https://t.me/+jJfYAgZshAI5NmVk" target="_blank">Telegram &#8599;</a>.</p>
+
+  <div class="page-nav">
+    <a href="#" data-page="settlement">&larr; Previous<br><span>Settlement</span></a>
+    <a href="#" data-page="links">Next<br><span>Links &rarr;</span></a>
+  </div>
+</div>
+
+<!-- ═══ LINKS ═══ -->
+<div class="page" id="links">
+  <div class="page-header">
+    <h1>Links</h1>
+    <p class="page-desc">Official channels and resources.</p>
+  </div>
+
+  <table>
+    <thead><tr><th>Resource</th><th>Link</th></tr></thead>
+    <tbody>
+    <tr><td><strong>App</strong></td><td><a href="https://tail.trade/trade" target="_blank">tail.trade/trade &#8599;</a></td></tr>
+    <tr><td><strong>Twitter / X</strong></td><td><a href="https://x.com/taaborhein" target="_blank">@taaborhein &#8599;</a></td></tr>
+    <tr><td><strong>Telegram</strong></td><td><a href="https://t.me/+jJfYAgZshAI5NmVk" target="_blank">Community &#8599;</a></td></tr>
+    <tr><td><strong>KOPS Oracle</strong></td><td><a href="https://kops.ai" target="_blank">kops.ai &#8599;</a></td></tr>
+    </tbody>
+  </table>
+
+  <div class="page-nav">
+    <a href="#" data-page="market-makers">&larr; Previous<br><span>Market Makers</span></a>
+    <a href="#" data-page="faq">Next<br><span>FAQs &rarr;</span></a>
+  </div>
+</div>
+
+<!-- ═══ FAQ ═══ -->
+<div class="page" id="faq">
+  <div class="page-header">
+    <h1>FAQs</h1>
+    <p class="page-desc">Frequently asked questions.</p>
+  </div>
+
+  <h3>What is tail.trade?</h3>
+  <p>A decentralized perpetual futures exchange for team strength indices. You can go long or short on any team with up to 10&times; leverage.</p>
+
+  <h3>Is this like betting?</h3>
+  <p>No. Bets expire when an event ends. tail.trade positions are perpetual futures &#8212; they stay open indefinitely. You can hold a position for a minute or a year. There's no fixed event to settle against.</p>
+
+  <h3>Do I own part of a football club?</h3>
+  <p>No. When you hold a position on tail.trade, you are speculating on the team's strength index. You have no economic ownership in the underlying club.</p>
+
+  <h3>What moves the price?</h3>
+  <p>Match results are the primary driver. A win increases the index, a loss decreases it. Between matches, the index also reflects changes in market consensus. During live matches, real-time market signals provide continuous updates.</p>
+
+  <h3>What is the funding rate?</h3>
+  <p>A periodic payment between longs and shorts that keeps the trading price aligned with the oracle index. If the trading price is above the index, longs pay shorts (and vice versa).</p>
+
+  <h3>What collateral do I need?</h3>
+  <p>USDC on Solana.</p>
+
+  <h3>Is there KYC?</h3>
+  <p>No. tail.trade is permissionless and fully on-chain. No KYC, no region locking.</p>
+
+  <h3>Can I withdraw anytime?</h3>
+  <p>Yes. Withdrawals are instant and on-chain. Zero delays.</p>
+
+  <div class="page-nav">
+    <a href="#" data-page="links">&larr; Previous<br><span>Links</span></a>
+    <div class="spacer"></div>
+  </div>
+</div>
+
+</div></main>
+</div>
+
+<script>
+// ─── Navigation ───
+function toggleSidebar(){document.querySelector('.sidebar').classList.toggle('open')}
+
+document.querySelectorAll('[data-page]').forEach(link=>{
+  link.addEventListener('click',e=>{
+    e.preventDefault();
+    const id=link.dataset.page;
+    document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+    document.getElementById(id).classList.add('active');
+    document.querySelectorAll('.s-link').forEach(l=>l.classList.remove('active'));
+    document.querySelectorAll('.s-link[data-page="'+id+'"]').forEach(l=>l.classList.add('active'));
+    document.querySelector('.sidebar').classList.remove('open');
+    if(link.dataset.scroll){
+      setTimeout(()=>{
+        const el=document.getElementById(link.dataset.scroll);
+        if(el) el.scrollIntoView({behavior:'smooth',block:'start'});
+      },50);
+    } else {
+      document.querySelector('.content').scrollTo(0,0);
+      window.scrollTo(0,0);
+    }
+  });
+});
+
+// ─── Search ───
+const pages = {};
+document.querySelectorAll('.page').forEach(p => {
+  pages[p.id] = {
+    title: p.querySelector('h1')?.textContent || p.id,
+    desc: p.querySelector('.page-desc')?.textContent || '',
+    text: p.textContent.toLowerCase()
+  };
+});
+
+function openSearch(){
+  document.getElementById('searchOverlay').classList.add('open');
+  setTimeout(()=>document.getElementById('searchInput').focus(),50);
+}
+function closeSearch(e){
+  if(e.target===document.getElementById('searchOverlay')){
+    document.getElementById('searchOverlay').classList.remove('open');
+    document.getElementById('searchInput').value='';
+    document.getElementById('searchResults').innerHTML='<div class="search-empty">Start typing to search...</div>';
+  }
+}
+document.addEventListener('keydown',e=>{
+  if((e.metaKey||e.ctrlKey)&&e.key==='k'){e.preventDefault();openSearch()}
+  if(e.key==='Escape'){
+    document.getElementById('searchOverlay').classList.remove('open');
+    document.getElementById('searchInput').value='';
+  }
+});
+
+function handleSearch(q){
+  const results=document.getElementById('searchResults');
+  if(!q.trim()){results.innerHTML='<div class="search-empty">Start typing to search...</div>';return}
+  const query=q.toLowerCase();
+  let html='';
+  Object.entries(pages).forEach(([id,p])=>{
+    if(p.text.includes(query)){
+      html+=`<div class="search-result" onclick="goToPage('${id}')">`+
+        `<span class="sr-title">${p.title}</span>`+
+        `<span class="sr-desc">${p.desc}</span></div>`;
+    }
+  });
+  results.innerHTML=html||'<div class="search-empty">No results found.</div>';
+}
+
+function goToPage(id){
+  document.getElementById('searchOverlay').classList.remove('open');
+  document.getElementById('searchInput').value='';
+  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  document.querySelectorAll('.s-link').forEach(l=>l.classList.remove('active'));
+  document.querySelectorAll('.s-link[data-page="'+id+'"]').forEach(l=>l.classList.add('active'));
+  window.scrollTo(0,0);
+}
+</script>
+</body>
+</html>
