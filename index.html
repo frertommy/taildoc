@@ -54,8 +54,8 @@ a:hover{color:var(--link-hover)}
 }
 .header-left{display:flex;align-items:center;gap:12px}
 .header-logo{display:flex;align-items:center;gap:10px;text-decoration:none}
-.header-logo svg{flex-shrink:0}
-.header-logo .logo-text{font-family:var(--heading);font-size:15px;font-weight:700;color:var(--fg);letter-spacing:-.3px}
+.header-logo .logo-img{height:22px;width:auto;flex-shrink:0}
+.header-logo .logo-icon{display:none;height:24px}
 .header-logo .logo-badge{
   font-size:10px;font-weight:600;letter-spacing:.6px;
   padding:2px 7px;border-radius:4px;
@@ -312,8 +312,11 @@ a:hover{color:var(--link-hover)}
 
 /* ─── Responsive ─── */
 @media(max-width:768px){
-  .menu-toggle{display:block}
+  .menu-toggle{display:block;position:fixed;top:12px;left:12px;z-index:110}
+  .top-header{padding-left:56px}
   .header-nav{display:none}
+  .header-logo .logo-full{display:none}
+  .header-logo .logo-icon{display:block}
   .search-trigger{min-width:auto}
   .search-trigger span{display:none}
   .sidebar{transform:translateX(-100%);transition:transform .2s ease;top:var(--header-h);background:var(--bg)}
@@ -338,8 +341,8 @@ a:hover{color:var(--link-hover)}
 <header class="top-header">
   <div class="header-left">
     <a href="#" class="header-logo" data-page="welcome">
-      <svg fill="none" viewBox="0 0 24 24" width="20" height="20"><path d="M17.987 13c0 2.209 1.79 4 3.997 4h1.998v1h-1.998c-2.207 0-3.997 1.791-3.997 4v2h-.999v-2c0-2.209-1.79-4-3.997-4h-1.999v-1h1.999c2.207 0 3.997-1.791 3.997-4V3h.999v10z" fill="#BAFC50"/><path d="M6.995 2c0 2.209 1.79 4 3.997 4h1.999v1h-1.999c-2.207 0-3.997 1.791-3.997 4v10H5.996V11c0-2.209-1.79-4-3.997-4H0V6h1.999c2.207 0 3.997-1.791 3.997-4V0h.999v2z" fill="#BAFC50"/></svg>
-      <span class="logo-text">tail.trade</span>
+      <img src="logo.svg" alt="tail.trade" class="logo-img logo-full">
+      <img src="logo-icon.svg" alt="tail.trade" class="logo-img logo-icon">
       <span class="logo-badge">docs</span>
     </a>
     <nav class="header-nav">
