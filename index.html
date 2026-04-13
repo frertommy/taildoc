@@ -532,7 +532,7 @@ a:hover{color:var(--link-hover)}
     <p class="page-desc">Perpetual futures on team strength indices.</p>
   </div>
 
-  <p>Each market on tail.trade tracks a <strong>team strength index</strong> powered by the KOPS oracle. The index reflects a team's competitive strength based on match results, market consensus, and live event signals. When you have a position, you are speculating on whether a team's strength index will go up or down &#8212; you do not have any ownership stake in the club.</p>
+  <p>Each market on tail.trade tracks a <strong>team strength index</strong> powered by the KOPS oracle. The index reflects how strong a team is based on their results, current form, and what the market expects. When you hold a position, you're speculating on whether that team's strength will go up or down &#8212; you don't have any ownership stake in the club.</p>
 
   <h2>Available Leagues</h2>
   <div class="market-row"><span class="mr-name">Premier League</span><span class="mr-meta">20 teams <span class="badge live">Live</span></span></div>
@@ -545,8 +545,8 @@ a:hover{color:var(--link-hover)}
   <div class="market-row"><span class="mr-name">ATP / WTA Tennis</span><span class="mr-meta"><span class="badge soon">Coming Soon</span></span></div>
 
   <h2>How Prices Work</h2>
-  <p>Each team's price is derived from an internal strength index via a smooth transformation that ensures prices are always positive and that equal changes in strength produce equal percentage price moves across all teams.</p>
-  <p>Prices move primarily at <strong>match settlement</strong> &#8212; when a verified result is incorporated into the index. Between matches, prices also reflect changes in market consensus from distributed signal sources. During live matches, sub-second market signals drive continuous price updates.</p>
+  <p>Each team has a price derived from its strength index. Prices are always positive and move proportionally &#8212; a 5% improvement in strength means a 5% price increase, regardless of the team.</p>
+  <p>Prices move primarily when <strong>match results come in</strong>. Between matches, prices also adjust based on market expectations &#8212; transfers, injuries, form. During live matches, prices update in real time as the game unfolds.</p>
 
   <div class="callout tip">
     <div>&#128161;</div>
@@ -850,15 +850,15 @@ a:hover{color:var(--link-hover)}
 
   <h2>Oracle Guard Rails</h2>
   <ul>
-    <li><strong>Confidence interval checks</strong> &#8212; Oracle updates with wide confidence intervals trigger reduced leverage limits</li>
-    <li><strong>Staleness protection</strong> &#8212; If the oracle hasn't updated within a configured window, new position opens are paused</li>
-    <li><strong>Price band limits</strong> &#8212; Maximum per-update price movement is capped, preventing single-oracle manipulation from cascading into mass liquidations</li>
-    <li><strong>Settlement clamping</strong> &#8212; The KOPS oracle's cause-effect clamp prevents pathological settlement outcomes at the source</li>
+    <li><strong>Uncertainty checks</strong> &#8212; When the oracle is less certain about a price, leverage limits are automatically reduced</li>
+    <li><strong>Staleness protection</strong> &#8212; If prices haven't updated recently, new positions are paused until fresh data arrives</li>
+    <li><strong>Price band limits</strong> &#8212; No single update can move a price by more than a capped amount, preventing runaway moves</li>
+    <li><strong>Win/loss guarantee</strong> &#8212; A win can never lower a team's price. A loss can never raise it. This is enforced automatically on every match.</li>
   </ul>
 
   <div class="callout info">
     <div>&#8505;&#65039;</div>
-    <div><p><strong>Multi-layer protection:</strong> Confidence-weighted market signals, capped settlement moves, and the hard cause-effect invariant work together. Bad data gets attenuated. Correct data gets amplified.</p></div>
+    <div><p><strong>Multiple safety layers:</strong> These protections work together &#8212; bad data is dampened, correct data is amplified, and the win/loss guarantee ensures every settlement makes intuitive sense.</p></div>
   </div>
 
   <h2>Open Interest Caps</h2>
@@ -877,36 +877,26 @@ a:hover{color:var(--link-hover)}
     <p class="page-desc">How team strength indices are computed.</p>
   </div>
 
-  <p>tail.trade uses the <strong>KOPS oracle</strong> &#8212; a constructive oracle that synthesizes continuous team strength indices from multiple independent signal layers.</p>
-  <p>Unlike traditional oracles that relay an existing spot price, KOPS <em>constructs</em> the index from first principles. There is no underlying spot market for "team strength" &#8212; the oracle creates the canonical price.</p>
+  <p>tail.trade uses the <strong>KOPS oracle</strong> to generate a strength index for every team. There is no existing market for "team strength" &#8212; the oracle creates the price by combining everything that matters: results, form, and what the market thinks will happen next.</p>
 
-  <h2>Signal Layers</h2>
-  <table>
-    <thead><tr><th>Layer</th><th>Signal Source</th><th>Active When</th></tr></thead>
-    <tbody>
-    <tr><td><strong>Historical Performance</strong></td><td>Cumulative match results via network equilibrium solve</td><td>Always</td></tr>
-    <tr><td><strong>Market Consensus</strong></td><td>Forward-looking assessments from distributed markets</td><td>Between matches</td></tr>
-    <tr><td><strong>Live Event</strong></td><td>Real-time market signals</td><td>During matches</td></tr>
-    </tbody>
-  </table>
-
-  <h2>Update Cadence</h2>
-  <table>
-    <thead><tr><th>Regime</th><th>Cadence</th></tr></thead>
-    <tbody>
-    <tr><td>Between matches</td><td>30 seconds</td></tr>
-    <tr><td>During live matches</td><td>1-2 seconds</td></tr>
-    <tr><td>At settlement</td><td>Immediate, deterministic</td></tr>
-    </tbody>
-  </table>
-
-  <h2>Cause-Effect Guarantee</h2>
-  <p>The KOPS oracle enforces a hard constraint on every settlement:</p>
+  <h2>What Goes Into the Index</h2>
+  <p>The index reflects three things:</p>
   <ul>
-    <li>A <strong>win</strong> will never decrease a team's index</li>
-    <li>A <strong>loss</strong> will never increase a team's index</li>
+    <li><strong>Results</strong> &#8212; Every match outcome is factored in. A team's full history of wins, losses, and draws shapes its baseline strength.</li>
+    <li><strong>Market expectations</strong> &#8212; Between matches, the index also reflects what the broader market expects to happen next. If a star player gets injured or a big transfer is announced, the index adjusts.</li>
+    <li><strong>Live match data</strong> &#8212; During a live match, the index updates in real time as the game unfolds.</li>
   </ul>
-  <p>This is verifiable on every settlement event. See <a href="#" data-page="settlement">Settlement</a> for details.</p>
+
+  <h2>When Does the Price Update?</h2>
+  <p>The index is <strong>always live</strong>. Between matches it updates every 30 seconds. During a live match, it updates every 1&#8211;2 seconds. When a match ends, the final result is locked in immediately.</p>
+
+  <h2>The Core Guarantee</h2>
+  <p>The oracle enforces one simple rule on every match result:</p>
+  <ul>
+    <li>A team that <strong>wins</strong> will never see its index go down</li>
+    <li>A team that <strong>loses</strong> will never see its index go up</li>
+  </ul>
+  <p>This is enforced automatically and is verifiable on every settlement. See <a href="#" data-page="settlement">Settlement</a> for details.</p>
 
   <p>For full oracle documentation, see <a href="https://kops.ai" target="_blank">KOPS Oracle Docs &#8599;</a></p>
 
@@ -923,21 +913,20 @@ a:hover{color:var(--link-hover)}
     <p class="page-desc">How match results affect the index.</p>
   </div>
 
-  <p>When a match ends, the KOPS oracle performs a deterministic settlement. The index update is computed from the verified match result and published to the on-chain feed.</p>
+  <p>When a match ends, the oracle locks in the result and updates the team's index. This happens automatically &#8212; no manual input, no delays.</p>
 
-  <h2>Settlement Lifecycle</h2>
+  <h2>What Happens During a Match</h2>
   <ol>
-    <li><strong>Match starts</strong> &#8212; Live Event layer activates, market consensus layer freezes at kickoff values</li>
-    <li><strong>During match</strong> &#8212; Real-time market signals drive continuous index updates</li>
-    <li><strong>Match ends</strong> &#8212; Live Event layer deactivates, settlement function executes</li>
-    <li><strong>Settlement</strong> &#8212; Index update is computed deterministically from the result, cause-effect clamp is applied, new index value is published on-chain</li>
+    <li><strong>Kickoff</strong> &#8212; The index starts updating in real time as the match unfolds</li>
+    <li><strong>During the match</strong> &#8212; Prices move continuously based on what's happening on the pitch</li>
+    <li><strong>Full time</strong> &#8212; The final result is locked in and the index is updated immediately</li>
   </ol>
 
-  <h2>What Determines the Size of the Move?</h2>
-  <p>The magnitude of the settlement move depends on how surprising the result was relative to pre-match market expectations. A heavy favorite winning produces a small move. A heavy underdog winning produces a large move. Draws are treated as partial outcomes for both sides.</p>
+  <h2>How Big Is the Move?</h2>
+  <p>It depends on how surprising the result was. If a heavy favorite wins, the move is small &#8212; the market already expected it. If an underdog pulls off an upset, the move is large. Draws count as a partial result for both sides.</p>
 
   <h2>Verification</h2>
-  <p>All settlements are logged publicly. Every settlement record contains the pre-event index, post-event index, verified outcome, and whether the causal monotonicity clamp was applied. Anyone can independently verify that the settlement was computed correctly.</p>
+  <p>All settlements are logged publicly on-chain. Every record shows the index before and after the match, the verified result, and whether any adjustments were applied. Anyone can check that the settlement was computed correctly.</p>
 
   <div class="page-nav">
     <a href="#" data-page="oracle">&larr; Previous<br><span>Price Oracle</span></a>
@@ -957,7 +946,7 @@ a:hover{color:var(--link-hover)}
   <h2>Why Make Markets on tail.trade?</h2>
   <ul>
     <li><strong>New asset class</strong> &#8212; first-mover advantage in a market with no competing venues</li>
-    <li><strong>Predictable oracle</strong> &#8212; deterministic settlement with cause-effect guarantees reduces adverse selection risk</li>
+    <li><strong>Predictable oracle</strong> &#8212; prices move on real results. Wins always push prices up, losses always push them down. No surprises.</li>
     <li><strong>Hedgeable</strong> &#8212; team strength indices are correlated with bookmaker odds, enabling cross-hedging</li>
     <li><strong>Maker fee rebates</strong> &#8212; competitive fee structure for liquidity providers</li>
   </ul>
