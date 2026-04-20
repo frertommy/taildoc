@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Terms of Use — Tail.Trade</title>
+<meta name="description" content="Terms governing access to and use of the tail.trade interface.">
+<link rel="icon" type="image/svg+xml" href="/logo-icon.svg">
+
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://docs.tail.trade/terms_of_use">
+<meta property="og:site_name" content="Tail.Trade">
+<meta property="og:title" content="Terms of Use — Tail.Trade">
+<meta property="og:description" content="Terms governing access to and use of the tail.trade interface.">
+<meta property="og:image" content="https://docs.tail.trade/logo.svg">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Terms of Use — Tail.Trade">
+<meta name="twitter:description" content="Terms governing access to and use of the tail.trade interface.">
+<meta name="twitter:image" content="https://docs.tail.trade/logo.svg">
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://api.fontshare.com/v2/css?f[]=general-sans@500,600,700&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --bg:#0d0d0f;
+  --bg2:#141416;
+  --bg3:#1a1a1e;
+  --surface:#222228;
+  --border:#2a2a30;
+  --border-subtle:#1f1f24;
+  --fg:#f0f0f2;
+  --fg2:#b8b8be;
+  --fg3:#7a7a82;
+  --fg4:#4a4a52;
+  --accent:#BAFC50;
+  --accent-dim:rgba(186,252,80,.08);
+  --accent-fg:#0d0d0f;
+  --link:#BAFC50;
+  --link-hover:#d4ff8a;
+  --sans:'Inter',system-ui,-apple-system,sans-serif;
+  --heading:'General Sans','Inter',system-ui,-apple-system,sans-serif;
+  --mono:'JetBrains Mono',SFMono-Regular,Consolas,monospace;
+  --r:8px;
+  --r-lg:12px;
+  --header-h:56px;
+  --transition:150ms ease;
+}
+html{scroll-behavior:smooth}
+body{font-family:var(--sans);color:var(--fg2);line-height:1.75;font-size:15px;-webkit-font-smoothing:antialiased;background:var(--bg)}
+a{color:var(--link);text-decoration:none;transition:color var(--transition)}
+a:hover{color:var(--link-hover)}
+::selection{background:var(--accent);color:var(--accent-fg)}
+
+/* ─── Top Header ─── */
+.top-header{
+  position:fixed;top:0;left:0;right:0;z-index:100;
+  height:var(--header-h);
+  background:rgba(13,13,15,.85);
+  backdrop-filter:blur(16px) saturate(180%);
+  -webkit-backdrop-filter:blur(16px) saturate(180%);
+  border-bottom:1px solid var(--border-subtle);
+  display:flex;align-items:center;justify-content:space-between;
+  padding:0 24px;
+}
+.header-left{display:flex;align-items:center;gap:12px}
+.header-logo{display:flex;align-items:center;gap:10px;text-decoration:none}
+.header-logo .logo-img{height:22px;width:auto;flex-shrink:0}
+.header-logo .logo-icon{display:none;height:24px}
+.header-logo .logo-badge{
+  font-size:10px;font-weight:600;letter-spacing:.6px;
+  padding:2px 7px;border-radius:4px;
+  background:var(--accent);color:var(--accent-fg);
+  text-transform:uppercase;
+}
+.header-nav{display:flex;align-items:center;gap:4px;margin-left:32px}
+.header-nav a{
+  font-size:13px;font-weight:500;color:var(--fg3);
+  padding:6px 12px;border-radius:6px;
+  transition:all var(--transition);
+}
+.header-nav a:hover{color:var(--fg);background:var(--surface);text-decoration:none}
+.header-right{display:flex;align-items:center;gap:12px}
+.back-link{
+  display:flex;align-items:center;gap:6px;
+  font-size:13px;font-weight:500;color:var(--fg3);
+  padding:7px 14px;border-radius:8px;
+  background:var(--bg3);border:1px solid var(--border);
+  transition:all var(--transition);
+}
+.back-link:hover{color:var(--fg);border-color:var(--fg4);text-decoration:none}
+
+/* ─── Layout ─── */
+.layout{padding-top:var(--header-h);min-height:100vh}
+.content-inner{max-width:760px;margin:0 auto;padding:56px 32px 120px}
+
+/* ─── Page Styles ─── */
+.page-header{margin-bottom:40px;padding-bottom:28px;border-bottom:1px solid var(--border-subtle)}
+.eyebrow{
+  font-family:var(--mono);font-size:11px;font-weight:500;
+  text-transform:uppercase;letter-spacing:.12em;
+  color:var(--accent);margin-bottom:14px;
+}
+h1{
+  font-family:var(--heading);
+  font-size:40px;font-weight:700;color:var(--fg);
+  line-height:1.2;margin-bottom:12px;letter-spacing:-1px;
+}
+.page-desc{font-size:16px;color:var(--fg3);line-height:1.6;margin-bottom:10px}
+.meta{font-family:var(--mono);font-size:12px;color:var(--fg4);margin-top:14px}
+h2{
+  font-family:var(--heading);
+  font-size:22px;font-weight:600;color:var(--fg);
+  margin-top:48px;margin-bottom:14px;letter-spacing:-.3px;
+  scroll-margin-top:calc(var(--header-h) + 20px);
+}
+h3{font-family:var(--heading);font-size:16px;font-weight:600;color:var(--fg);margin-top:32px;margin-bottom:10px}
+p{margin-bottom:16px;line-height:1.8;color:var(--fg2)}
+ul,ol{margin-bottom:16px;padding-left:24px}
+li{margin-bottom:8px;line-height:1.75}
+li::marker{color:var(--fg4)}
+strong{font-family:var(--heading);color:var(--fg);font-weight:600}
+em{color:var(--fg3)}
+
+.notice{
+  border-left:3px solid var(--accent);
+  padding:18px 22px;margin:24px 0 28px;
+  background:var(--accent-dim);
+  border-radius:0 var(--r) var(--r) 0;
+}
+.notice .notice-title{
+  font-family:var(--heading);font-size:12px;font-weight:600;
+  text-transform:uppercase;letter-spacing:.1em;
+  color:var(--accent);margin-bottom:8px;
+}
+.notice p{margin:0;color:var(--fg2)}
+.notice p + p{margin-top:10px}
+
+.caps{
+  font-size:13.5px;line-height:1.75;
+  color:var(--fg2);
+  background:var(--bg2);border:1px solid var(--border-subtle);
+  padding:18px 22px;border-radius:var(--r);
+  margin-bottom:16px;
+}
+.caps ul{margin:10px 0 0;padding-left:22px}
+.caps li{margin-bottom:4px}
+
+.contact-block{
+  margin-top:48px;padding:20px 24px;
+  background:var(--bg2);border:1px solid var(--border-subtle);
+  border-radius:var(--r);
+}
+.contact-block .c-label{
+  font-family:var(--mono);font-size:11px;font-weight:500;
+  text-transform:uppercase;letter-spacing:.1em;
+  color:var(--fg4);margin-bottom:6px;
+}
+.contact-block a{font-family:var(--mono);font-size:14px}
+
+.acknowledgment{
+  margin-top:48px;padding:24px 28px;
+  border:1px solid var(--border);border-radius:var(--r);
+  background:var(--bg2);
+  font-family:var(--heading);font-size:13px;font-weight:600;
+  color:var(--fg);letter-spacing:.02em;line-height:1.6;
+  text-transform:uppercase;
+}
+
+.footer{
+  margin-top:80px;padding-top:28px;
+  border-top:1px solid var(--border-subtle);
+  display:flex;justify-content:space-between;align-items:center;
+  font-size:12px;color:var(--fg4);font-family:var(--mono);
+}
+.footer a{color:var(--fg3)}
+.footer a:hover{color:var(--fg)}
+
+@media(max-width:768px){
+  .top-header{padding:0 16px}
+  .header-nav{display:none}
+  .content-inner{padding:40px 20px 80px}
+  h1{font-size:30px}
+  h2{font-size:19px;margin-top:36px}
+  .back-link{padding:6px 10px;font-size:12px}
+}
+</style>
+</head>
+<body>
+
+<!-- ═══ TOP HEADER ═══ -->
+<header class="top-header">
+  <div class="header-left">
+    <a href="/" class="header-logo">
+      <img src="/logo.svg" alt="tail.trade" class="logo-img">
+      <span class="logo-badge">Docs</span>
+    </a>
+    <nav class="header-nav">
+      <a href="/">Documentation</a>
+      <a href="https://tail.trade" target="_blank" rel="noopener">App</a>
+    </nav>
+  </div>
+  <div class="header-right">
+    <a href="/" class="back-link">&larr; Back to Docs</a>
+  </div>
+</header>
+
+<!-- ═══ CONTENT ═══ -->
+<div class="layout">
+  <div class="content-inner">
+
+    <div class="page-header">
+      <div class="eyebrow">Legal</div>
+      <h1>Terms of Use</h1>
+      <p class="page-desc">Terms governing access to and use of the tail.trade interface.</p>
+      <div class="meta">Last updated: April 18, 2026</div>
+    </div>
+
+    <div class="notice">
+      <div class="notice-title">Important Notice</div>
+      <p>These Terms of Use (the <strong>"Terms"</strong>) govern your access to and use of the website located at tail.trade and any associated frontend pages, tools, scripts, or interfaces made available under that domain (collectively, the <strong>"Interface"</strong>).</p>
+      <p>The Interface is a <strong>non-custodial software interface</strong> that allows users to view blockchain data and prepare transactions for submission to smart contracts deployed on the Solana blockchain. The Interface does not take custody of user assets or private keys.</p>
+      <p><strong>Use of blockchain-based perpetual derivatives and similar products involves significant risk, including the risk of losing all deposited funds.</strong> You should not use the Interface unless you understand these risks and are willing and able to bear them.</p>
+      <p>By accessing or using the Interface, you agree to these Terms. If you do not agree, do not use the Interface.</p>
+    </div>
+
+    <h2 id="definitions">1. Definitions</h2>
+    <p>In these Terms:</p>
+    <ul>
+      <li><strong>"Interface"</strong> means the website located at tail.trade and any associated frontend tools, scripts, or pages made available under that domain.</li>
+      <li><strong>"Protocol"</strong> means any smart contract system, program, or blockchain-based mechanism that the Interface may display, reference, or help users interact with.</li>
+      <li><strong>"Oracle"</strong> means any price feed, index, model, or external data system displayed, referenced, or used by a Protocol accessible through the Interface.</li>
+      <li><strong>"Interface Contributors"</strong> means the persons who publish, maintain, host, design, or support the Interface from time to time, solely with respect to the Interface.</li>
+      <li><strong>"User," "you," and "your"</strong> means the person or entity accessing or using the Interface.</li>
+    </ul>
+
+    <h2 id="scope">2. Scope of these Terms</h2>
+    <p>These Terms govern the <strong>Interface only</strong>. They do not govern:</p>
+    <ul>
+      <li>the Solana blockchain;</li>
+      <li>any wallet software you choose to use;</li>
+      <li>any RPC provider, hosting provider, analytics vendor, or other third-party service;</li>
+      <li>any third-party website or social channel;</li>
+      <li>the independent legal characterization, enforceability, or operation of any Protocol or Oracle.</li>
+    </ul>
+    <p>Your use of the Interface does not create a brokerage, exchange membership, agency, partnership, fiduciary, advisory, employment, or custodial relationship with any Interface Contributor.</p>
+
+    <h2 id="nature">3. Nature of the Interface</h2>
+    <p>The Interface is a software frontend only. It is intended to:</p>
+    <ul>
+      <li>display public blockchain information;</li>
+      <li>help users generate transaction instructions;</li>
+      <li>transmit unsigned or signed transaction data to the Solana network or supporting infrastructure at the user's direction.</li>
+    </ul>
+    <p>The Interface Contributors are <strong>not</strong> your agent, broker, dealer, investment adviser, commodity trading adviser, futures commission merchant, custodian, payment processor, money transmitter, trustee, fiduciary, sportsbook operator, or bookmaker.</p>
+    <p>The Interface may be modified, suspended, restricted, geoblocked, or discontinued at any time, with or without notice.</p>
+
+    <h2 id="custody">4. No custody; user control</h2>
+    <p>The Interface is non-custodial. At no time are the Interface Contributors intended to take possession or control of:</p>
+    <ul>
+      <li>your private keys;</li>
+      <li>seed phrases or recovery phrases;</li>
+      <li>digital assets in your wallet;</li>
+      <li>your blockchain accounts;</li>
+      <li>collateral or positions maintained by a Protocol.</li>
+    </ul>
+    <p>All blockchain transactions are initiated by you, reviewed by you, and signed by you using your own wallet. Once broadcast to the blockchain, transactions may be irreversible.</p>
+    <p>You are solely responsible for:</p>
+    <ul>
+      <li>the wallet you connect;</li>
+      <li>the accuracy of transaction parameters before signing;</li>
+      <li>monitoring positions, leverage, margin, funding, and liquidation risk;</li>
+      <li>the consequences of any transaction you authorize.</li>
+    </ul>
+
+    <h2 id="classification">5. No representation as to legal classification</h2>
+    <p>The Interface may display or refer to perpetual markets, indices, team-related instruments, synthetic prices, or other novel blockchain-based products.</p>
+    <p><strong>We do not represent or guarantee any particular legal or regulatory classification of any Protocol, market, contract, instrument, token, index, or transaction.</strong> Descriptions used on the Interface are for convenience only and are not legal conclusions. Regulators or courts in different jurisdictions may characterize the same activity differently.</p>
+    <p>You are solely responsible for obtaining your own legal, tax, and regulatory advice regarding your use of the Interface, any Protocol, and any related activity.</p>
+
+    <h2 id="eligibility">6. Eligibility</h2>
+    <p>By accessing or using the Interface, you represent and warrant, on a continuing basis, that:</p>
+    <ol>
+      <li>you are at least 18 years old and legally able to enter into these Terms;</li>
+      <li>you are not located in, organized in, resident of, or otherwise subject to any jurisdiction where access to or use of the Interface or relevant Protocol activity would be unlawful;</li>
+      <li>you are not a person or entity subject to applicable sanctions or embargoes;</li>
+      <li>you are not using any VPN, proxy, relay, or similar tool to evade restrictions that may be applied to the Interface;</li>
+      <li>your use of the Interface complies with all laws applicable to you.</li>
+    </ol>
+    <p>Without limiting the foregoing, the Interface is not intended for persons in or from jurisdictions that prohibit or materially restrict access to virtual asset derivatives, retail leveraged products, or similar markets.</p>
+
+    <h2 id="restricted">7. Restricted uses</h2>
+    <p>You may not use the Interface to:</p>
+    <ul>
+      <li>violate any law or regulation;</li>
+      <li>engage in fraud, market manipulation, sanctions evasion, money laundering, terrorist financing, or deceptive conduct;</li>
+      <li>interfere with, disrupt, or compromise the Interface or any third-party infrastructure;</li>
+      <li>attempt unauthorized access to any system, account, credential, or data;</li>
+      <li>use the Interface on behalf of a person you know, or reasonably should know, is ineligible;</li>
+      <li>misrepresent your identity, location, or eligibility;</li>
+      <li>use the Interface in a way that would cause any Interface Contributor to violate applicable law.</li>
+    </ul>
+
+    <h2 id="third-party">8. Third-party dependencies</h2>
+    <p>The Interface depends on third-party software and infrastructure, including wallets, browsers, operating systems, RPC nodes, cloud vendors, DNS, content delivery networks, analytics vendors, and blockchain validators.</p>
+    <p>Those services may fail, degrade, censor, reorder, delay, misreport, or block transactions or data. The Interface Contributors are not responsible for those failures.</p>
+
+    <h2 id="risk">9. Assumption of risk</h2>
+    <p>You acknowledge and accept all risks arising from use of the Interface and any Protocol accessible through it, including:</p>
+    <ul>
+      <li>loss of all digital assets or collateral;</li>
+      <li>liquidation, deleveraging, socialized loss, or other forced position changes;</li>
+      <li>smart contract bugs, exploits, hacks, or design flaws;</li>
+      <li>Oracle errors, stale prices, data outages, methodology changes, or manipulation;</li>
+      <li>thin liquidity, slippage, volatility, and extreme market movements;</li>
+      <li>blockchain congestion, forks, validator outages, censorship, MEV, or chain instability;</li>
+      <li>wallet compromise, malware, phishing, spoofed websites, or browser extension failures;</li>
+      <li>regulatory, tax, or enforcement changes;</li>
+      <li>discontinuation or geoblocking of the Interface.</li>
+    </ul>
+    <p>You understand that the Interface may display novel or synthetic markets and that past behavior of any market or Oracle does not predict future outcomes.</p>
+
+    <h2 id="no-advice">10. No advice; no reliance</h2>
+    <p>Nothing on the Interface, in any documentation, in any community channel, or in any communication associated with the Interface constitutes:</p>
+    <ul>
+      <li>legal advice;</li>
+      <li>investment, financial, trading, accounting, or tax advice;</li>
+      <li>an offer or solicitation in any jurisdiction where such activity would be unlawful;</li>
+      <li>a recommendation that you enter, close, or maintain any position.</li>
+    </ul>
+    <p>Information may be incomplete, delayed, or inaccurate. You are solely responsible for your own decisions and should not rely on the Interface as the sole basis for any action.</p>
+
+    <h2 id="compliance">11. Compliance and taxes</h2>
+    <p>You are solely responsible for:</p>
+    <ul>
+      <li>determining whether use of the Interface and any associated activity is lawful for you;</li>
+      <li>complying with sanctions, AML, tax, securities, derivatives, gaming, consumer protection, and other laws applicable to you;</li>
+      <li>maintaining your own records;</li>
+      <li>calculating, reporting, and paying any taxes arising from your activity.</li>
+    </ul>
+    <p>The Interface Contributors do not provide tax reporting, withholding, or legal compliance services.</p>
+
+    <h2 id="ip">12. Intellectual property</h2>
+    <p>Unless otherwise stated, the Interface and its branding, design, content, and software are protected by applicable intellectual property laws.</p>
+    <p>Where source code is released under an open-source license, that code is governed by the relevant license. No license is granted by implication except as required for ordinary use of the Interface.</p>
+
+    <h2 id="disclaimers">13. Disclaimers</h2>
+    <div class="caps">
+      TO THE MAXIMUM EXTENT PERMITTED BY APPLICABLE LAW, THE INTERFACE IS PROVIDED <strong>"AS IS," "AS AVAILABLE," AND "WITH ALL FAULTS."</strong>
+      <br><br>
+      THE INTERFACE CONTRIBUTORS DISCLAIM ALL WARRANTIES, EXPRESS, IMPLIED, STATUTORY, OR OTHERWISE, INCLUDING ANY WARRANTIES OF:
+      <ul>
+        <li>MERCHANTABILITY;</li>
+        <li>FITNESS FOR A PARTICULAR PURPOSE;</li>
+        <li>TITLE;</li>
+        <li>NON-INFRINGEMENT;</li>
+        <li>ACCURACY;</li>
+        <li>AVAILABILITY;</li>
+        <li>SECURITY;</li>
+        <li>QUIET ENJOYMENT; OR</li>
+        <li>THAT THE INTERFACE, ANY PROTOCOL, OR ANY ORACLE WILL FUNCTION WITHOUT INTERRUPTION OR ERROR.</li>
+      </ul>
+    </div>
+    <p>We do not warrant that the Interface will remain available, that any Protocol is lawful in any jurisdiction, or that any displayed information is complete, current, or accurate.</p>
+
+    <h2 id="liability">14. Limitation of liability</h2>
+    <div class="caps">
+      TO THE MAXIMUM EXTENT PERMITTED BY APPLICABLE LAW, NO INTERFACE CONTRIBUTOR SHALL BE LIABLE FOR ANY INDIRECT, INCIDENTAL, SPECIAL, CONSEQUENTIAL, EXEMPLARY, PUNITIVE, OR SIMILAR DAMAGES, OR FOR ANY LOSS OF PROFITS, REVENUE, DATA, GOODWILL, OPPORTUNITY, OR DIGITAL ASSETS, ARISING OUT OF OR RELATING TO THE INTERFACE, ANY PROTOCOL, ANY ORACLE, OR THESE TERMS, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGES.
+    </div>
+    <p>TO THE MAXIMUM EXTENT PERMITTED BY APPLICABLE LAW, THE TOTAL AGGREGATE LIABILITY OF ALL INTERFACE CONTRIBUTORS ARISING OUT OF OR RELATING TO THE INTERFACE OR THESE TERMS SHALL NOT EXCEED THE GREATER OF:</p>
+    <ol>
+      <li><strong>USD 100</strong>, or</li>
+      <li>the amount, if any, paid by you directly to the Interface Contributors for use of the Interface in the 12 months preceding the event giving rise to the claim.</li>
+    </ol>
+    <p>Nothing in these Terms excludes or limits liability to the extent such exclusion or limitation is prohibited by non-waivable law.</p>
+
+    <h2 id="indemnification">15. Indemnification</h2>
+    <p>To the maximum extent permitted by applicable law, you agree to indemnify, defend, and hold harmless the Interface Contributors from and against any third-party claims, liabilities, damages, losses, penalties, judgments, costs, and expenses (including reasonable legal fees) arising out of or relating to:</p>
+    <ul>
+      <li>your use of the Interface;</li>
+      <li>your breach of these Terms;</li>
+      <li>your violation of law or the rights of any person;</li>
+      <li>your misrepresentation of eligibility, location, or authority;</li>
+      <li>any dispute between you and any other user, protocol participant, regulator, or third party.</li>
+    </ul>
+
+    <h2 id="suspension">16. Suspension and termination</h2>
+    <p>We may suspend, restrict, or terminate access to the Interface, in whole or in part, at any time and without liability, including where we believe it is necessary for legal, security, technical, or abuse-prevention reasons.</p>
+
+    <h2 id="modifications">17. Modifications</h2>
+    <p>We may modify these Terms at any time by posting an updated version on the Interface. The updated version becomes effective when posted unless otherwise stated. Your continued use of the Interface after an update means you accept the revised Terms.</p>
+
+    <h2 id="governing-law">18. Governing law and dispute resolution</h2>
+    <p>These Terms and any non-contractual obligations arising out of or in connection with them are governed by the laws of the <strong>Republic of Panama</strong>, without regard to conflict of laws rules.</p>
+    <p>Any dispute arising out of or relating to these Terms or the Interface shall be resolved by <strong>binding individual arbitration</strong> seated in <strong>Panama City, Panama</strong>, in the <strong>English language</strong>, before a single arbitrator under the <strong>ICC Rules of Arbitration</strong> then in force.</p>
+    <p>You and the Interface Contributors each waive, to the fullest extent permitted by applicable law:</p>
+    <ul>
+      <li>any right to a jury trial; and</li>
+      <li>any right to participate in a class, collective, coordinated, or representative action.</li>
+    </ul>
+    <p>Nothing in this Section prevents either side from seeking temporary or injunctive relief in a court of competent jurisdiction where necessary to prevent immediate harm, unauthorized access, abuse, or infringement.</p>
+    <p>If any part of this Section is unenforceable under applicable non-waivable law, that part will be enforced only to the maximum extent permitted, and the remainder will remain in effect where legally valid.</p>
+
+    <h2 id="severability">19. Severability</h2>
+    <p>If any provision of these Terms is held invalid, illegal, or unenforceable, the remaining provisions will continue in full force to the maximum extent permitted by law.</p>
+
+    <h2 id="entire-agreement">20. Entire agreement</h2>
+    <p>These Terms, together with the Privacy Policy published on the Interface, constitute the entire agreement between you and the Interface Contributors regarding the Interface.</p>
+
+    <h2 id="contact">21. Contact</h2>
+    <p>For legal notices relating to these Terms, contact:</p>
+    <div class="contact-block">
+      <div class="c-label">Legal</div>
+      <a href="mailto:legal@tail.trade">legal@tail.trade</a>
+    </div>
+
+    <div class="acknowledgment">
+      By accessing or using the Interface, you acknowledge that you have read, understood, and agreed to these Terms.
+    </div>
+
+    <div class="footer">
+      <span>tail.trade &middot; Terms of Use</span>
+      <a href="/">Back to Docs &rarr;</a>
+    </div>
+
+  </div>
+</div>
+
+</body>
+</html>

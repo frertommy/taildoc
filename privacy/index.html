@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Privacy Policy — Tail.Trade</title>
+<meta name="description" content="Privacy and data handling statement for the tail.trade interface.">
+<link rel="icon" type="image/svg+xml" href="/logo-icon.svg">
+
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://docs.tail.trade/privacy">
+<meta property="og:site_name" content="Tail.Trade">
+<meta property="og:title" content="Privacy Policy — Tail.Trade">
+<meta property="og:description" content="Privacy and data handling statement for the tail.trade interface.">
+<meta property="og:image" content="https://docs.tail.trade/logo.svg">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Privacy Policy — Tail.Trade">
+<meta name="twitter:description" content="Privacy and data handling statement for the tail.trade interface.">
+<meta name="twitter:image" content="https://docs.tail.trade/logo.svg">
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://api.fontshare.com/v2/css?f[]=general-sans@500,600,700&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --bg:#0d0d0f;
+  --bg2:#141416;
+  --bg3:#1a1a1e;
+  --surface:#222228;
+  --border:#2a2a30;
+  --border-subtle:#1f1f24;
+  --fg:#f0f0f2;
+  --fg2:#b8b8be;
+  --fg3:#7a7a82;
+  --fg4:#4a4a52;
+  --accent:#BAFC50;
+  --accent-dim:rgba(186,252,80,.08);
+  --accent-fg:#0d0d0f;
+  --link:#BAFC50;
+  --link-hover:#d4ff8a;
+  --sans:'Inter',system-ui,-apple-system,sans-serif;
+  --heading:'General Sans','Inter',system-ui,-apple-system,sans-serif;
+  --mono:'JetBrains Mono',SFMono-Regular,Consolas,monospace;
+  --r:8px;
+  --r-lg:12px;
+  --header-h:56px;
+  --transition:150ms ease;
+}
+html{scroll-behavior:smooth}
+body{font-family:var(--sans);color:var(--fg2);line-height:1.75;font-size:15px;-webkit-font-smoothing:antialiased;background:var(--bg)}
+a{color:var(--link);text-decoration:none;transition:color var(--transition)}
+a:hover{color:var(--link-hover)}
+::selection{background:var(--accent);color:var(--accent-fg)}
+
+/* ─── Top Header ─── */
+.top-header{
+  position:fixed;top:0;left:0;right:0;z-index:100;
+  height:var(--header-h);
+  background:rgba(13,13,15,.85);
+  backdrop-filter:blur(16px) saturate(180%);
+  -webkit-backdrop-filter:blur(16px) saturate(180%);
+  border-bottom:1px solid var(--border-subtle);
+  display:flex;align-items:center;justify-content:space-between;
+  padding:0 24px;
+}
+.header-left{display:flex;align-items:center;gap:12px}
+.header-logo{display:flex;align-items:center;gap:10px;text-decoration:none}
+.header-logo .logo-img{height:22px;width:auto;flex-shrink:0}
+.header-logo .logo-badge{
+  font-size:10px;font-weight:600;letter-spacing:.6px;
+  padding:2px 7px;border-radius:4px;
+  background:var(--accent);color:var(--accent-fg);
+  text-transform:uppercase;
+}
+.header-nav{display:flex;align-items:center;gap:4px;margin-left:32px}
+.header-nav a{
+  font-size:13px;font-weight:500;color:var(--fg3);
+  padding:6px 12px;border-radius:6px;
+  transition:all var(--transition);
+}
+.header-nav a:hover{color:var(--fg);background:var(--surface);text-decoration:none}
+.header-right{display:flex;align-items:center;gap:12px}
+.back-link{
+  display:flex;align-items:center;gap:6px;
+  font-size:13px;font-weight:500;color:var(--fg3);
+  padding:7px 14px;border-radius:8px;
+  background:var(--bg3);border:1px solid var(--border);
+  transition:all var(--transition);
+}
+.back-link:hover{color:var(--fg);border-color:var(--fg4);text-decoration:none}
+
+/* ─── Layout ─── */
+.layout{padding-top:var(--header-h);min-height:100vh}
+.content-inner{max-width:760px;margin:0 auto;padding:56px 32px 120px}
+
+/* ─── Page Styles ─── */
+.page-header{margin-bottom:40px;padding-bottom:28px;border-bottom:1px solid var(--border-subtle)}
+.eyebrow{
+  font-family:var(--mono);font-size:11px;font-weight:500;
+  text-transform:uppercase;letter-spacing:.12em;
+  color:var(--accent);margin-bottom:14px;
+}
+h1{
+  font-family:var(--heading);
+  font-size:40px;font-weight:700;color:var(--fg);
+  line-height:1.2;margin-bottom:12px;letter-spacing:-1px;
+}
+.page-desc{font-size:16px;color:var(--fg3);line-height:1.6;margin-bottom:10px}
+.meta{font-family:var(--mono);font-size:12px;color:var(--fg4);margin-top:14px}
+h2{
+  font-family:var(--heading);
+  font-size:22px;font-weight:600;color:var(--fg);
+  margin-top:48px;margin-bottom:14px;letter-spacing:-.3px;
+  scroll-margin-top:calc(var(--header-h) + 20px);
+}
+h3{font-family:var(--heading);font-size:16px;font-weight:600;color:var(--fg);margin-top:32px;margin-bottom:10px}
+p{margin-bottom:16px;line-height:1.8;color:var(--fg2)}
+ul,ol{margin-bottom:16px;padding-left:24px}
+li{margin-bottom:8px;line-height:1.75}
+li::marker{color:var(--fg4)}
+strong{font-family:var(--heading);color:var(--fg);font-weight:600}
+em{color:var(--fg3)}
+
+.contact-block{
+  margin-top:48px;padding:20px 24px;
+  background:var(--bg2);border:1px solid var(--border-subtle);
+  border-radius:var(--r);
+}
+.contact-block .c-label{
+  font-family:var(--mono);font-size:11px;font-weight:500;
+  text-transform:uppercase;letter-spacing:.1em;
+  color:var(--fg4);margin-bottom:6px;
+}
+.contact-block a{font-family:var(--mono);font-size:14px}
+
+.acknowledgment{
+  margin-top:48px;padding:24px 28px;
+  border:1px solid var(--border);border-radius:var(--r);
+  background:var(--bg2);
+  font-family:var(--heading);font-size:13px;font-weight:600;
+  color:var(--fg);letter-spacing:.02em;line-height:1.6;
+}
+
+.footer{
+  margin-top:80px;padding-top:28px;
+  border-top:1px solid var(--border-subtle);
+  display:flex;justify-content:space-between;align-items:center;
+  font-size:12px;color:var(--fg4);font-family:var(--mono);
+}
+.footer a{color:var(--fg3)}
+.footer a:hover{color:var(--fg)}
+
+@media(max-width:768px){
+  .top-header{padding:0 16px}
+  .header-nav{display:none}
+  .content-inner{padding:40px 20px 80px}
+  h1{font-size:30px}
+  h2{font-size:19px;margin-top:36px}
+  .back-link{padding:6px 10px;font-size:12px}
+}
+</style>
+</head>
+<body>
+
+<!-- ═══ TOP HEADER ═══ -->
+<header class="top-header">
+  <div class="header-left">
+    <a href="/" class="header-logo">
+      <img src="/logo.svg" alt="tail.trade" class="logo-img">
+      <span class="logo-badge">Docs</span>
+    </a>
+    <nav class="header-nav">
+      <a href="/">Documentation</a>
+      <a href="https://tail.trade" target="_blank" rel="noopener">App</a>
+    </nav>
+  </div>
+  <div class="header-right">
+    <a href="/" class="back-link">&larr; Back to Docs</a>
+  </div>
+</header>
+
+<!-- ═══ CONTENT ═══ -->
+<div class="layout">
+  <div class="content-inner">
+
+    <div class="page-header">
+      <div class="eyebrow">Legal</div>
+      <h1>Privacy Policy</h1>
+      <p class="page-desc">Privacy and data handling statement for the tail.trade interface.</p>
+      <div class="meta">Last updated: April 18, 2026</div>
+    </div>
+
+    <h2 id="scope">1. Scope</h2>
+    <p>This Privacy Policy explains how information is processed when you access or use <strong>tail.trade</strong> and any related web pages, tools, or frontend components made available under that domain (the <strong>"Interface"</strong>).</p>
+    <p>The Interface is a <strong>non-custodial web interface</strong> that helps users create, sign, and broadcast transactions to smart contracts deployed on the Solana blockchain. This Privacy Policy applies to the <strong>Interface only</strong>. It does <strong>not</strong> govern:</p>
+    <ul>
+      <li>the Solana blockchain or other public blockchain networks;</li>
+      <li>third-party wallets, RPC providers, analytics providers, CDN/hosting providers, or search/indexing services;</li>
+      <li>any smart contracts, protocols, or oracle systems that may be accessible through or referenced by the Interface, except to the extent the Interface itself processes information about them.</li>
+    </ul>
+    <p>If you interact with the Interface, you acknowledge that blockchain-based systems necessarily create public, immutable records that are not controlled by the Interface or its contributors.</p>
+
+    <h2 id="who">2. Who this policy describes</h2>
+    <p>For purposes of this Policy, <strong>"we," "us," and "our"</strong> refer to the persons who publish, maintain, or support the Interface from time to time (the <strong>"Interface Contributors"</strong>), solely with respect to the Interface. This Policy does not create any partnership, joint venture, fiduciary duty, or other special relationship among any contributors.</p>
+
+    <h2 id="minimization">3. Data minimization</h2>
+    <p>The Interface is designed to minimize the processing of personal information.</p>
+    <p>In particular, the Interface is <strong>not intended</strong> to require or request the following from users in the ordinary course of use:</p>
+    <ul>
+      <li>legal name;</li>
+      <li>postal address;</li>
+      <li>date of birth;</li>
+      <li>passport, national ID, or other government identification;</li>
+      <li>bank account or payment card information;</li>
+      <li>username and password for an Interface account;</li>
+      <li>private keys, seed phrases, recovery phrases, or wallet credentials;</li>
+      <li>biometric data.</li>
+    </ul>
+    <p>You should <strong>never</strong> send private keys, seed phrases, or wallet credentials to us.</p>
+
+    <h2 id="categories">4. Categories of information we may process</h2>
+    <p>Even though the Interface is designed to be low-data, some information may still be processed in the ordinary course of operating a website and blockchain interface.</p>
+
+    <h3>4.1 Wallet and on-chain information</h3>
+    <p>If you connect a wallet or use the Interface to prepare a transaction, the Interface may process information such as:</p>
+    <ul>
+      <li>your <strong>public wallet address</strong>;</li>
+      <li>public balances, positions, orders, transaction hashes, and other blockchain state associated with that address;</li>
+      <li>transaction parameters you choose to review, simulate, sign, or broadcast.</li>
+    </ul>
+    <p>This information is used so that the Interface can render the relevant blockchain state to your browser and allow you to interact with supported smart contracts.</p>
+
+    <h3>4.2 Public blockchain data</h3>
+    <p>Blockchain data is public, transparent, and generally permanent. When you use the Interface to interact with the Solana blockchain, the resulting on-chain activity may be visible to anyone, including your wallet address, transaction history, positions, liquidations, and other activity. We do not control the Solana blockchain and cannot delete or alter public blockchain records.</p>
+
+    <h3>4.3 Technical and usage information</h3>
+    <p>When you access the Interface, limited technical information may be processed automatically, such as:</p>
+    <ul>
+      <li>IP address;</li>
+      <li>browser type and version;</li>
+      <li>device type and operating system;</li>
+      <li>language settings;</li>
+      <li>pages viewed and features used;</li>
+      <li>approximate location derived from IP address at a country or region level;</li>
+      <li>timestamps, referrer information, and diagnostics relating to page performance, security, and abuse prevention.</li>
+    </ul>
+
+    <h3>4.4 Cookies, local storage, and similar technologies</h3>
+    <p>The Interface may use <strong>cookies, local storage, session storage, or similar technologies</strong> for limited purposes such as:</p>
+    <ul>
+      <li>remembering wallet connection state or user preferences;</li>
+      <li>protecting the Interface against abuse or malicious traffic;</li>
+      <li>load balancing, security, and technical session management;</li>
+      <li>storing banner acknowledgements or dismissed notices;</li>
+      <li>limited analytics or error monitoring, where enabled.</li>
+    </ul>
+    <p>Some of these technologies may be strictly necessary for the Interface to function. Others may be optional under applicable law, in which case the Interface may present additional notice or consent controls where required.</p>
+
+    <h3>4.5 Information you voluntarily provide</h3>
+    <p>If you contact us, submit a form, join a waitlist, report a bug, or send us an email, we may process the information you choose to provide, such as:</p>
+    <ul>
+      <li>name or pseudonym;</li>
+      <li>email address;</li>
+      <li>company or project name;</li>
+      <li>message content and attachments;</li>
+      <li>any other information you voluntarily include.</li>
+    </ul>
+    <p>Please do not send sensitive personal information unless it is strictly necessary for your request.</p>
+
+    <h2 id="purposes">5. Purposes of processing</h2>
+    <p>We may process the above information for the following purposes:</p>
+    <ol>
+      <li>to make the Interface available and functional;</li>
+      <li>to display relevant blockchain information in your browser;</li>
+      <li>to route requests through RPC, CDN, hosting, and similar infrastructure;</li>
+      <li>to maintain security, detect abuse, prevent fraud, and enforce access restrictions;</li>
+      <li>to troubleshoot bugs, crashes, degraded performance, and service issues;</li>
+      <li>to comply with applicable law, sanctions, court orders, or lawful process;</li>
+      <li>to communicate with you when you contact us;</li>
+      <li>to protect our rights, users, infrastructure, and the public.</li>
+    </ol>
+    <p>We do <strong>not</strong> sell your personal information for money. We do <strong>not</strong> run interest-based advertising through the Interface.</p>
+
+    <h2 id="legal-bases">6. Legal bases (where applicable)</h2>
+    <p>Where data protection laws require a legal basis for processing, we generally rely on one or more of the following, as applicable:</p>
+    <ul>
+      <li><strong>performance of a service you request</strong>, such as displaying on-chain data through the Interface;</li>
+      <li><strong>legitimate interests</strong>, such as website security, abuse prevention, diagnostics, service continuity, and enforcing access restrictions;</li>
+      <li><strong>compliance with legal obligations</strong>;</li>
+      <li><strong>consent</strong>, where applicable law requires consent (for example, certain non-essential cookies or similar technologies).</li>
+    </ul>
+
+    <h2 id="third-party">7. Third-party service providers and integrations</h2>
+    <p>To operate the Interface, information may be transmitted to or through third-party providers, such as:</p>
+    <ul>
+      <li>website hosting, CDN, and server infrastructure providers;</li>
+      <li>DNS and domain service providers;</li>
+      <li>Solana RPC providers and node operators;</li>
+      <li>wallet software providers you choose to use;</li>
+      <li>analytics, logging, and error-reporting vendors, if enabled;</li>
+      <li>anti-abuse and security vendors;</li>
+      <li>email or ticketing systems, if you contact us.</li>
+    </ul>
+    <p>These third parties operate under their own terms and privacy policies. We do not control their independent processing practices.</p>
+
+    <h2 id="geoblocking">8. Geoblocking, sanctions, and abuse controls</h2>
+    <p>The Interface may process technical information, including IP-based location signals and related telemetry, to help:</p>
+    <ul>
+      <li>enforce geographic restrictions;</li>
+      <li>identify potentially sanctioned or restricted access attempts;</li>
+      <li>detect automated abuse or malicious activity;</li>
+      <li>protect the Interface and users.</li>
+    </ul>
+    <p>Geolocation methods are imperfect and may be inaccurate. Access restrictions may be applied or removed at our discretion.</p>
+
+    <h2 id="transfers">9. International transfers</h2>
+    <p>The Interface may be operated using infrastructure and vendors located in multiple countries. As a result, information processed through the Interface may be transferred to and processed in jurisdictions other than your own, including jurisdictions whose data protection laws may differ from those of your home country.</p>
+
+    <h2 id="retention">10. Retention</h2>
+    <p>We retain information only for as long as reasonably necessary for the purposes described in this Policy, including security, diagnostics, legal compliance, and dispute handling.</p>
+    <p>In general:</p>
+    <ul>
+      <li>wallet and blockchain data displayed by the Interface may remain publicly available on-chain indefinitely;</li>
+      <li>security and server logs may be retained for a limited period;</li>
+      <li>support correspondence may be retained for as long as needed to address the request and maintain appropriate records;</li>
+      <li>analytics or diagnostic records may be retained in aggregated, minimized, or pseudonymized form.</li>
+    </ul>
+    <p>We may retain information longer if required by law, to resolve disputes, or to enforce our terms.</p>
+
+    <h2 id="rights">11. Your rights</h2>
+    <p>Depending on your jurisdiction, you may have rights regarding personal information processed about you, such as the right to request:</p>
+    <ul>
+      <li>access;</li>
+      <li>correction;</li>
+      <li>deletion;</li>
+      <li>restriction;</li>
+      <li>objection;</li>
+      <li>data portability; or</li>
+      <li>withdrawal of consent where processing is based on consent.</li>
+    </ul>
+    <p>These rights are not absolute and may be subject to exceptions. In particular, we cannot delete, modify, or control data that exists on a public blockchain.</p>
+
+    <h2 id="security">12. Security</h2>
+    <p>We use reasonable measures designed to protect information processed through the Interface. However, no website, network, or system is perfectly secure. You use the Interface at your own risk and remain solely responsible for:</p>
+    <ul>
+      <li>the security of your wallet, private keys, seed phrases, devices, and browser environment;</li>
+      <li>verifying all transaction details before signing;</li>
+      <li>protecting yourself against phishing, malware, spoofed domains, and social engineering.</li>
+    </ul>
+
+    <h2 id="children">13. Children</h2>
+    <p>The Interface is not directed to children and is not intended for use by anyone under 18, or under the age of legal majority in their jurisdiction if higher.</p>
+
+    <h2 id="changes">14. Changes to this policy</h2>
+    <p>We may update this Privacy Policy from time to time. The updated version will be indicated by the revised <strong>Last updated</strong> date. Continued use of the Interface after an update constitutes acknowledgment of the revised Policy.</p>
+
+    <h2 id="contact">15. Contact</h2>
+    <p>For privacy-related requests or notices, you may contact:</p>
+    <div class="contact-block">
+      <div class="c-label">Privacy</div>
+      <a href="mailto:privacy@tail.trade">privacy@tail.trade</a>
+    </div>
+
+    <div class="acknowledgment">
+      By accessing or using the Interface, you acknowledge that you have read and understood this Privacy Policy.
+    </div>
+
+    <div class="footer">
+      <span>tail.trade &middot; Privacy Policy</span>
+      <a href="/">Back to Docs &rarr;</a>
+    </div>
+
+  </div>
+</div>
+
+</body>
+</html>
