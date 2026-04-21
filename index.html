@@ -535,14 +535,14 @@ a:hover{color:var(--link-hover)}
 
   <h2>A New Financial Primitive</h2>
   <p>Until now, the only way to express a view on a football club was through one-off bets or event-specific prediction markets. Both expire when the event ends. Liquidity fragments across thousands of individual markets. There's no leverage, no short selling, no persistent price.</p>
-  <p>tail.trade changes this. One market per team. Persistent liquidity. Leverage up to 10&times;. Native short selling. Continuous price discovery powered by the KOPS oracle. Every match result, every transfer, every market signal feeds into a single continuous index.</p>
+  <p>tail.trade changes this. One market per team. Persistent liquidity. Leverage up to 30&times;. Native short selling. Continuous price discovery powered by the KOPS oracle. Every match result, every transfer, every market signal feeds into a single continuous index.</p>
 
   <h2>How It Compares</h2>
   <table>
     <thead><tr><th>Feature</th><th>Sportsbooks</th><th>Prediction Markets</th><th>tail.trade</th></tr></thead>
     <tbody>
     <tr><td><strong>Position duration</strong></td><td>Single event</td><td>Single event</td><td>Indefinite</td></tr>
-    <tr><td><strong>Leverage</strong></td><td>None</td><td>None/limited</td><td>Up to 10&times;</td></tr>
+    <tr><td><strong>Leverage</strong></td><td>None</td><td>None/limited</td><td>Up to 30&times;</td></tr>
     <tr><td><strong>Short selling</strong></td><td>Not possible</td><td>Awkward</td><td>Native</td></tr>
     <tr><td><strong>Liquidity</strong></td><td>Per event</td><td>Per event</td><td>Persistent</td></tr>
     <tr><td><strong>Withdrawal</strong></td><td>Days</td><td>At settlement</td><td>Instant</td></tr>
@@ -669,7 +669,7 @@ a:hover{color:var(--link-hover)}
   <ol>
     <li><strong>Select a market</strong> &#8212; choose a team from the market selector</li>
     <li><strong>Choose direction</strong> &#8212; Long (bullish on team strength) or Short (bearish)</li>
-    <li><strong>Set size and leverage</strong> &#8212; choose your position size and leverage up to 10&times;</li>
+    <li><strong>Set size and leverage</strong> &#8212; choose your position size and leverage up to 30&times;</li>
     <li><strong>Confirm</strong> &#8212; review and submit your order</li>
   </ol>
 
@@ -718,7 +718,7 @@ a:hover{color:var(--link-hover)}
   <p>tail.trade uses <strong>cross-margin</strong> by default. Your entire USDC balance acts as collateral for all open positions. This is more capital-efficient than isolated margin, but means losses on one position can affect your other positions.</p>
 
   <h2>Leverage</h2>
-  <p>Maximum leverage is <strong>10&times;</strong> across all markets. Leverage is set per-position at the time of opening. Higher leverage means less margin is required to open a position, but also means a smaller adverse price move can trigger liquidation.</p>
+  <p>Maximum leverage is <strong>30&times;</strong> across all markets. Leverage is set per-position at the time of opening. Higher leverage means less margin is required to open a position, but also means a smaller adverse price move can trigger liquidation.</p>
 
   <h2>Margin Ratio</h2>
   <pre>margin_ratio = equity / total_position_value</pre>
@@ -1082,7 +1082,7 @@ a:hover{color:var(--link-hover)}
   </div>
 
   <h3>What is tail.trade?</h3>
-  <p>A decentralized perpetual futures exchange for team strength indices. You can go long or short on any team with up to 10&times; leverage.</p>
+  <p>A decentralized perpetual futures exchange for team strength indices. You can go long or short on any team with up to 30&times; leverage.</p>
 
   <h3>Is this like betting?</h3>
   <p>No. Bets expire when an event ends. tail.trade positions are perpetual futures &#8212; they stay open indefinitely. You can hold a position for a minute or a year. There's no fixed event to settle against.</p>
