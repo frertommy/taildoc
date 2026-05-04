@@ -1,0 +1,8 @@
+{
+  "rewrites": [
+    {
+      "source": "/(welcome|why|markets|connect|funding|trading|orders|margining|liquidations|funding-rate|fees|architecture|risk|oracle|settlement|market-makers|points|links|faq)",
+      "destination": "/index.html"
+    }
+  ]
+}

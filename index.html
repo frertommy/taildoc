@@ -1118,26 +1118,53 @@ a:hover{color:var(--link-hover)}
 // ─── Navigation ───
 function toggleSidebar(){document.querySelector('.sidebar').classList.toggle('open')}
 
+const BASE_TITLE='Tail.Trade - Sport Perps Docs';
+function pathForPage(id){return id==='welcome'?'/':'/'+id}
+function pageFromPath(){
+  const m=location.pathname.match(/^\/([^/]+)\/?$/);
+  if(!m) return 'welcome';
+  return document.getElementById(m[1])?m[1]:'welcome';
+}
+function showPage(id,scrollTarget){
+  const target=document.getElementById(id)||document.getElementById('welcome');
+  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+  target.classList.add('active');
+  document.querySelectorAll('.s-link').forEach(l=>l.classList.remove('active'));
+  document.querySelectorAll('.s-link[data-page="'+target.id+'"]').forEach(l=>l.classList.add('active'));
+  document.querySelector('.sidebar').classList.remove('open');
+  const h1=target.querySelector('h1')?.textContent;
+  document.title=(target.id==='welcome'||!h1)?BASE_TITLE:h1+' · Tail.Trade Docs';
+  if(scrollTarget){
+    setTimeout(()=>{
+      const el=document.getElementById(scrollTarget);
+      if(el) el.scrollIntoView({behavior:'smooth',block:'start'});
+    },50);
+  } else {
+    document.querySelector('.content').scrollTo(0,0);
+    window.scrollTo(0,0);
+  }
+}
+function navigateTo(id,scrollTarget){
+  showPage(id,scrollTarget);
+  history.pushState({page:id,scroll:scrollTarget||null},'',pathForPage(id));
+}
+
 document.querySelectorAll('[data-page]').forEach(link=>{
   link.addEventListener('click',e=>{
     e.preventDefault();
-    const id=link.dataset.page;
-    document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
-    document.getElementById(id).classList.add('active');
-    document.querySelectorAll('.s-link').forEach(l=>l.classList.remove('active'));
-    document.querySelectorAll('.s-link[data-page="'+id+'"]').forEach(l=>l.classList.add('active'));
-    document.querySelector('.sidebar').classList.remove('open');
-    if(link.dataset.scroll){
-      setTimeout(()=>{
-        const el=document.getElementById(link.dataset.scroll);
-        if(el) el.scrollIntoView({behavior:'smooth',block:'start'});
-      },50);
-    } else {
-      document.querySelector('.content').scrollTo(0,0);
-      window.scrollTo(0,0);
-    }
+    navigateTo(link.dataset.page,link.dataset.scroll);
   });
 });
+
+window.addEventListener('popstate',e=>{
+  const id=(e.state&&e.state.page)||pageFromPath();
+  showPage(id,e.state&&e.state.scroll);
+});
+
+// Initial route from URL
+const initialPage=pageFromPath();
+showPage(initialPage);
+history.replaceState({page:initialPage,scroll:null},'',pathForPage(initialPage));
 
 // ─── Search ───
 const pages = {};
@@ -1186,11 +1213,7 @@ function handleSearch(q){
 function goToPage(id){
   document.getElementById('searchOverlay').classList.remove('open');
   document.getElementById('searchInput').value='';
-  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
-  document.getElementById(id).classList.add('active');
-  document.querySelectorAll('.s-link').forEach(l=>l.classList.remove('active'));
-  document.querySelectorAll('.s-link[data-page="'+id+'"]').forEach(l=>l.classList.add('active'));
-  window.scrollTo(0,0);
+  navigateTo(id);
 }
 </script>
 </body>
