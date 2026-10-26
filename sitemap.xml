@@ -1,6 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url><loc>https://docs.tail.trade/</loc><changefreq>weekly</changefreq><priority>1.0</priority></url>
-  <url><loc>https://docs.tail.trade/privacy/</loc><changefreq>yearly</changefreq><priority>0.3</priority></url>
-  <url><loc>https://docs.tail.trade/terms_of_use/</loc><changefreq>yearly</changefreq><priority>0.3</priority></url>
+  <url><loc>https://docs.tail.trade/</loc><priority>1.0</priority></url>
+  <url><loc>https://docs.tail.trade/why</loc><priority>0.7</priority></url>
+  <url><loc>https://docs.tail.trade/markets</loc><priority>0.7</priority></url>
+  <url><loc>https://docs.tail.trade/connect</loc><priority>0.7</priority></url>
+  <url><loc>https://docs.tail.trade/funding</loc><priority>0.7</priority></url>
+  <url><loc>https://docs.tail.trade/trading</loc><priority>0.7</priority></url>
+  <url><loc>https://docs.tail.trade/orders</loc><priority>0.7</priority></url>
+  <url><loc>https://docs.tail.trade/margining</loc><priority>0.7</priority></url>
+  <url><loc>https://docs.tail.trade/liquidations</loc><priority>0.7</priority></url>
+  <url><loc>https://docs.tail.trade/funding-rate</loc><priority>0.7</priority></url>
+  <url><loc>https://docs.tail.trade/fees</loc><priority>0.7</priority></url>
+  <url><loc>https://docs.tail.trade/architecture</loc><priority>0.7</priority></url>
+  <url><loc>https://docs.tail.trade/risk</loc><priority>0.7</priority></url>
+  <url><loc>https://docs.tail.trade/oracle</loc><priority>0.7</priority></url>
+  <url><loc>https://docs.tail.trade/settlement</loc><priority>0.7</priority></url>
+  <url><loc>https://docs.tail.trade/market-makers</loc><priority>0.7</priority></url>
+  <url><loc>https://docs.tail.trade/points</loc><priority>0.7</priority></url>
+  <url><loc>https://docs.tail.trade/links</loc><priority>0.7</priority></url>
+  <url><loc>https://docs.tail.trade/faq</loc><priority>0.7</priority></url>
+  <url><loc>https://docs.tail.trade/sports-perpetual-futures</loc><priority>0.7</priority></url>
+  <url><loc>https://docs.tail.trade/perps-vs-sports-betting</loc><priority>0.7</priority></url>
+  <url><loc>https://docs.tail.trade/how-a-goal-moves-the-price</loc><priority>0.7</priority></url>
+  <url><loc>https://docs.tail.trade/how-to-short-a-football-club</loc><priority>0.7</priority></url>
+  <url><loc>https://docs.tail.trade/privacy/</loc><priority>0.3</priority></url>
+  <url><loc>https://docs.tail.trade/terms_of_use/</loc><priority>0.3</priority></url>
 </urlset>
