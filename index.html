@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Tail.Trade - Sport Perps Docs</title>
-<meta name="description" content="Every team has a live price. Reacting on matches, news and more. Long/short your conviction.">
+<title>Tail.Trade Docs — Sports Perpetual Futures</title>
+<meta name="description" content="How to trade football clubs on Tail.Trade, the first perpetual futures exchange for sports: markets, leverage, funding, the KOPS oracle and more.">
 <link rel="icon" type="image/svg+xml" href="/logo-icon.svg">
 <link rel="canonical" href="https://docs.tail.trade/">
 
@@ -12,8 +12,8 @@
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://docs.tail.trade/">
 <meta property="og:site_name" content="Tail.Trade">
-<meta property="og:title" content="Tail.Trade - The First Perps for Sports">
-<meta property="og:description" content="Every team has a live price. Reacting on matches, news and more. Long/short your conviction.">
+<meta property="og:title" content="Tail.Trade Docs — Sports Perpetual Futures">
+<meta property="og:description" content="How to trade football clubs on Tail.Trade, the first perpetual futures exchange for sports: markets, leverage, funding, the KOPS oracle and more.">
 <meta property="og:image" content="https://docs.tail.trade/og-image.jpg">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
@@ -22,8 +22,8 @@
 <!-- Twitter Card -->
 <meta name="twitter:card" content="summary_large_image">
 <meta name="theme-color" content="#0c0e12">
-<meta name="twitter:title" content="Tail.Trade - The First Perps for Sports">
-<meta name="twitter:description" content="Every team has a live price. Reacting on matches, news and more. Long/short your conviction.">
+<meta name="twitter:title" content="Tail.Trade Docs — Sports Perpetual Futures">
+<meta name="twitter:description" content="How to trade football clubs on Tail.Trade, the first perpetual futures exchange for sports: markets, leverage, funding, the KOPS oracle and more.">
 <meta name="twitter:image" content="https://docs.tail.trade/og-image.jpg">
 
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -431,6 +431,13 @@ a:hover{color:var(--link-hover)}
       <a class="s-link" data-page="markets">Markets</a>
     </div>
     <div class="sidebar-group">
+      <div class="sidebar-group-title">Learn</div>
+      <a class="s-link" data-page="sports-perpetual-futures">What Are Sports Perps?</a>
+      <a class="s-link" data-page="perps-vs-sports-betting">Perps vs Sports Betting</a>
+      <a class="s-link" data-page="how-a-goal-moves-the-price">How a Goal Moves the Price</a>
+      <a class="s-link" data-page="how-to-short-a-football-club">How to Short a Club</a>
+    </div>
+    <div class="sidebar-group">
       <div class="sidebar-group-title">Getting Started</div>
       <a class="s-link" data-page="connect">Connect Wallet</a>
       <a class="s-link" data-page="funding">Funding Your Account</a>
@@ -552,14 +559,14 @@ a:hover{color:var(--link-hover)}
     <tr><td><strong>Liquidity</strong></td><td>Per event</td><td>Per event</td><td>Persistent</td></tr>
     <tr><td><strong>Withdrawal</strong></td><td>Days</td><td>At settlement</td><td>Instant</td></tr>
     <tr><td><strong>KYC</strong></td><td>Required</td><td>Varies</td><td>None</td></tr>
-    <tr><td><strong>Custody</strong></td><td>Custodial</td><td>Varies</td><td>Self-custody</td></tr>
+    <tr><td><strong>Custody</strong></td><td>Custodial</td><td>Varies</td><td>Non-custodial, on-chain</td></tr>
     </tbody>
   </table>
 
   <h2>Built for Traders</h2>
   <ul>
-    <li><strong>Self-custody</strong> &#8212; Assets never leave your wallet until settlement. No counterparty risk.</li>
-    <li><strong>Permissionless</strong> &#8212; No KYC, no region locking. Connect a wallet and trade.</li>
+    <li><strong>Non-custodial</strong> &#8212; Collateral is held by the on-chain protocol, not by a company, and every trade settles on-chain.</li>
+    <li><strong>Permissionless</strong> &#8212; No KYC. Connect a wallet and trade.</li>
     <li><strong>Instant settlement</strong> &#8212; Withdraw anytime. Zero delays, zero hold periods.</li>
     <li><strong>Verifiable oracle</strong> &#8212; Every price move traces to a verifiable event. Win always up, loss always down &#8212; by construction.</li>
   </ul>
@@ -825,10 +832,10 @@ a:hover{color:var(--link-hover)}
 
   <h2 id="amm">Virtual AMM</h2>
   <p>Each market has a <strong>virtual automated market maker</strong> (vAMM) that provides baseline liquidity. The vAMM uses a constant-product curve with concentrated liquidity around the oracle price, ensuring trades can always execute even in markets with limited organic order flow.</p>
-  <p>The vAMM is "virtual" &#8212; there are no real assets in the pool. It functions purely as a pricing and execution mechanism. Trader PnL is zero-sum: profits realized by one side are exactly matched by losses on the other.</p>
+  <p>The vAMM is "virtual" &#8212; there are no real assets in the pool. It functions purely as a pricing and execution mechanism.</p>
 
   <h3>Dynamic Peg</h3>
-  <p>The vAMM center price is continuously re-pegged to the oracle price. This ensures the vAMM always quotes around the current fair value rather than a stale historical price. Re-pegging happens atomically &#8212; there is no lag or arbitrageable gap between the oracle update and the vAMM adjustment.</p>
+  <p>The vAMM center price is continuously re-pegged to the oracle price. This ensures the vAMM always quotes around the current fair value rather than a stale historical price. Re-pegging is automatic, so quotes stay centred on fair value as the index moves.</p>
 
   <h3>Configurable Depth</h3>
   <p>Each market's vAMM depth is configured independently based on expected volatility and trading demand. Deeper pools absorb larger trades with less price impact. Pool depth can be adjusted by the protocol as markets mature.</p>
@@ -933,7 +940,7 @@ a:hover{color:var(--link-hover)}
   </ul>
 
   <h2>When Does the Price Update?</h2>
-  <p>The index is <strong>always live</strong>. Between matches it updates every 30 seconds. During a live match, it updates every 1&#8211;2 seconds. When a match ends, the final result is locked in immediately.</p>
+  <p>The index is <strong>always live</strong>. Between matches it tracks what the market expects next. During a live match it updates in real time as the game unfolds. When a match ends, the final result is locked in immediately.</p>
 
   <h2>The Core Guarantee</h2>
   <p>The oracle enforces one simple rule on every match result:</p>
@@ -1105,7 +1112,7 @@ a:hover{color:var(--link-hover)}
   <p>USDC on Solana.</p>
 
   <h3>Is there KYC?</h3>
-  <p>No. tail.trade is permissionless and fully on-chain. No KYC, no region locking.</p>
+  <p>No. tail.trade is permissionless and fully on-chain. Connect a wallet and trade.</p>
 
   <h3>Can I withdraw anytime?</h3>
   <p>Yes. Withdrawals are instant and on-chain. Zero delays.</p>
@@ -1116,6 +1123,140 @@ a:hover{color:var(--link-hover)}
   </div>
 </div>
 
+
+<div class="page" id="sports-perpetual-futures">
+  <div class="page-header">
+    <h1>What Are Sports Perpetual Futures?</h1>
+    <p class="page-desc">The first way to trade a football club like a market &#8212; long or short, with leverage, with no expiry.</p>
+  </div>
+  <p>A <strong>sports perpetual future</strong> ("sports perp") is a contract that tracks the live price of a team. You can buy it (go <strong>long</strong>) if you think the team's price will rise, or sell it (go <strong>short</strong>) if you think it will fall &#8212; and unlike a bet, it never expires. tail.trade is the first exchange to offer them.</p>
+
+  <h2>Where the idea comes from</h2>
+  <p>Perpetual futures are the most traded instrument in crypto. They let traders hold a leveraged position on Bitcoin or Ether for as long as they like, with a small periodic <a href="#" data-page="funding-rate">funding payment</a> keeping the contract price anchored to the underlying. tail.trade applies that exact structure to a new underlying: the strength of a football club.</p>
+
+  <h2>What you are actually trading</h2>
+  <p>Every club on tail.trade has a <strong>team strength index</strong> computed by the <a href="#" data-page="oracle">KOPS oracle</a>. It combines match results, live in-play data and what the wider market expects next &#8212; transfers, injuries, form. The index is the club's price. When the club outperforms, the price rises; when it underperforms, it falls.</p>
+  <p>One rule is enforced on every settlement: <strong>a team that wins never sees its price go down, and a team that loses never sees it go up.</strong> Bigger upsets move prices more than expected results.</p>
+
+  <h2>Why it is different</h2>
+  <ul>
+    <li><strong>No expiry</strong> &#8212; hold a view for a match, a transfer window or a whole season.</li>
+    <li><strong>Close any minute</strong> &#8212; take profit at 63&prime; after a goal instead of waiting for full time.</li>
+    <li><strong>Short selling</strong> &#8212; profit when a club struggles, something no sportsbook offers.</li>
+    <li><strong>Leverage up to 30&times;</strong> &#8212; size your conviction.</li>
+    <li><strong>One market per club</strong> &#8212; liquidity stays in one place instead of splitting across thousands of single-match markets.</li>
+    <li><strong>On-chain</strong> &#8212; margined and settled in USDC on Solana, with every settlement published publicly.</li>
+  </ul>
+
+  <h2>Get started</h2>
+  <p>Connect a wallet, deposit USDC and pick a club &#8212; see <a href="#" data-page="trading">Start Trading</a>, or use <a href="https://tail.trade/quick">Quick</a> to open a position in one tap.</p>
+
+  <div class="page-nav">
+    <a href="#" data-page="markets">&larr; Previous<br><span>Markets</span></a>
+    <a href="#" data-page="perps-vs-sports-betting">Next<br><span>Perps vs Sports Betting &rarr;</span></a>
+  </div>
+</div>
+
+<div class="page" id="perps-vs-sports-betting">
+  <div class="page-header">
+    <h1>Sports Perps vs Sports Betting</h1>
+    <p class="page-desc">A bet is a single wager that settles once. A perp is a position you control the whole way.</p>
+  </div>
+  <p>Both let you act on a view about a team. The difference is what happens after you click.</p>
+
+  <table>
+    <tr><th></th><th>Sportsbook bet</th><th>tail.trade perp</th></tr>
+    <tr><td><strong>Lifetime</strong></td><td>One event</td><td>No expiry</td></tr>
+    <tr><td><strong>Exit</strong></td><td>At full time (or a cash-out offer, if any)</td><td>Any minute, at the live price</td></tr>
+    <tr><td><strong>Direction</strong></td><td>Back an outcome</td><td>Long or short the club</td></tr>
+    <tr><td><strong>Leverage</strong></td><td>None</td><td>Up to 30&times;</td></tr>
+    <tr><td><strong>Price</strong></td><td>Fixed odds set by the book</td><td>Live market price from the oracle</td></tr>
+    <tr><td><strong>Winning too much</strong></td><td>Accounts get limited</td><td>No limits for being right</td></tr>
+    <tr><td><strong>Settlement</strong></td><td>Off-chain, operator-controlled</td><td>On-chain, publicly verifiable</td></tr>
+  </table>
+
+  <h2>Trade the price, not just the result</h2>
+  <p>With a bet you are locked in until the final whistle. On tail.trade the club's price moves during the match: if your team scores early, the price jumps and you can close and take the profit immediately &#8212; or hold for more. If the game turns, you can cut the position before full time.</p>
+
+  <h2>Views a bookmaker can't take</h2>
+  <ul>
+    <li><strong>Short a club</strong> you think is overrated &#8212; see <a href="#" data-page="how-to-short-a-football-club">How to Short a Club</a>.</li>
+    <li><strong>Hold a season-long view</strong> on a club's form without picking individual matches.</li>
+    <li><strong>Hedge</strong> &#8212; long your club and short its rival.</li>
+  </ul>
+  <p>Leverage cuts both ways: it multiplies losses as well as gains, and positions can be <a href="#" data-page="liquidations">liquidated</a>. Size accordingly and use stop-losses.</p>
+
+  <div class="page-nav">
+    <a href="#" data-page="sports-perpetual-futures">&larr; Previous<br><span>What Are Sports Perps?</span></a>
+    <a href="#" data-page="how-a-goal-moves-the-price">Next<br><span>How a Goal Moves the Price &rarr;</span></a>
+  </div>
+</div>
+
+<div class="page" id="how-a-goal-moves-the-price">
+  <div class="page-header">
+    <h1>How a Goal Moves a Club's Price</h1>
+    <p class="page-desc">Live in-play pricing: what happens to a club's price from kickoff to full time.</p>
+  </div>
+  <p>Every club's price on tail.trade is a live team strength index. Matches are when it moves most &#8212; and it moves while the game is still being played.</p>
+
+  <h2>Before kickoff</h2>
+  <p>The price already reflects what the market expects: the opponent, home or away, injuries and form. A heavy favourite is priced to win; an underdog is priced for the risk of losing.</p>
+
+  <h2>During the match</h2>
+  <p>As the game unfolds, the index updates in real time. A goal for the club pushes its price up; a goal conceded pushes it down. The size of the move depends on how much the goal changes the likely result &#8212; an equaliser in the 88th minute matters more than a third goal in a 3&#8211;0 win.</p>
+  <p>This is where perps shine: if $ARS scores at 63&prime;, a long position is already in profit at 63&prime;, and you can close it right there.</p>
+
+  <h2>At full time</h2>
+  <p>The result is locked into the index by the <a href="#" data-page="settlement">settlement</a> process. Two rules hold on every match:</p>
+  <ul>
+    <li>A win never lowers a club's price, and a loss never raises it.</li>
+    <li>Surprise is what moves prices: an expected win is a small step up, an upset is a big move. Draws count as a partial result for both sides.</li>
+  </ul>
+  <p>Every settlement is published on-chain with the index before and after, so anyone can verify it.</p>
+
+  <h2>Between matches</h2>
+  <p>The index keeps tracking market expectations &#8212; a star signing, an injury, a manager change &#8212; so the price is always live, not just on matchdays.</p>
+
+  <div class="page-nav">
+    <a href="#" data-page="perps-vs-sports-betting">&larr; Previous<br><span>Perps vs Sports Betting</span></a>
+    <a href="#" data-page="how-to-short-a-football-club">Next<br><span>How to Short a Club &rarr;</span></a>
+  </div>
+</div>
+
+<div class="page" id="how-to-short-a-football-club">
+  <div class="page-header">
+    <h1>How to Short a Football Club</h1>
+    <p class="page-desc">Profit when a club underperforms &#8212; something no sportsbook lets you do.</p>
+  </div>
+  <p>Going <strong>short</strong> means taking a position that gains when a club's price falls. On tail.trade every club market can be shorted natively, with the same leverage and order types as a long.</p>
+
+  <h2>Step by step</h2>
+  <ol>
+    <li>Go to <a href="https://tail.trade">tail.trade</a> and connect a Solana wallet (see <a href="#" data-page="connect">Connect Wallet</a>).</li>
+    <li>Deposit USDC (see <a href="#" data-page="funding">Funding Your Account</a>).</li>
+    <li>Pick the club you think will underperform.</li>
+    <li>Select <strong>Short</strong>, choose your size and leverage (up to 30&times;).</li>
+    <li>Optionally attach a take-profit and a stop-loss, then confirm.</li>
+    <li>Close whenever you like &#8212; mid-match, after the result, or later in the season.</li>
+  </ol>
+
+  <h2>When traders short</h2>
+  <ul>
+    <li>A club is on a bad run and you expect it to continue.</li>
+    <li>A key player is injured or sold.</li>
+    <li>A tough fixture you think the market is underpricing.</li>
+    <li>As a hedge: long your club, short its rival.</li>
+  </ul>
+
+  <h2>Know the risk</h2>
+  <p>A short loses money when the club's price rises &#8212; for example after an unexpected win. With leverage those moves are amplified, and a position that runs out of margin is <a href="#" data-page="liquidations">liquidated</a>. Use lower leverage around matches and set a stop-loss.</p>
+
+  <div class="page-nav">
+    <a href="#" data-page="how-a-goal-moves-the-price">&larr; Previous<br><span>How a Goal Moves the Price</span></a>
+    <a href="#" data-page="connect">Next<br><span>Connect Wallet &rarr;</span></a>
+  </div>
+</div>
+
 </div></main>
 </div>
 
@@ -1123,7 +1264,7 @@ a:hover{color:var(--link-hover)}
 // ─── Navigation ───
 function toggleSidebar(){document.querySelector('.sidebar').classList.toggle('open')}
 
-const BASE_TITLE='Tail.Trade - Sport Perps Docs';
+const BASE_TITLE='Tail.Trade Docs — Sports Perpetual Futures';
 function pathForPage(id){return id==='welcome'?'/':'/'+id}
 function pageFromPath(){
   const m=location.pathname.match(/^\/([^/]+)\/?$/);

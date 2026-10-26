@@ -1,7 +1,11 @@
 {
   "rewrites": [
     {
-      "source": "/(welcome|why|markets|connect|funding|trading|orders|margining|liquidations|funding-rate|fees|architecture|risk|oracle|settlement|market-makers|points|links|faq)",
+      "source": "/(why|markets|connect|funding|trading|orders|margining|liquidations|funding-rate|fees|architecture|risk|oracle|settlement|market-makers|points|links|faq|sports-perpetual-futures|perps-vs-sports-betting|how-a-goal-moves-the-price|how-to-short-a-football-club)",
+      "destination": "/pages/$1.html"
+    },
+    {
+      "source": "/welcome",
       "destination": "/index.html"
     }
   ]
